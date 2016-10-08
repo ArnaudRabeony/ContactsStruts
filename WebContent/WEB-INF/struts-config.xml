@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="LoginValidationForm"
+			type="ActionForms.LoginValidationForm" />
+	</form-beans>
+	<action-mappings>
+		<action path="/index" forward="/pages/index.jsp"/>
+		<action path="/searchContact" forward="/pages/searchContact.jsp"/>
+		
+		<action path="/update" forward="/pages/update.jsp"/>
+		<action path="/searchContact" forward="/pages/searchContact.jsp"/>
+		<action path="/searchAddress" forward="/pages/searchAddress.jsp"/>
+		<action path="/searchPhone" forward="/pages/searchPhone.jsp"/>
+		<action path="/searchGroup" forward="/pages/searchGroup.jsp"/>
+		
+		<action path="/delete" forward="/pages/delete.jsp"/>
+		<action path="/deleteContact" forward="/pages/deleteContact.jsp"/>
+		<action path="/deleteAddress" forward="/pages/deleteAddress.jsp"/>
+		<action path="/deletePhoneNumber" forward="/pages/deletePhoneNumber.jsp"/>
+		<action path="/deleteGroup" forward="/pages/deleteGroup.jsp"/>
+		
+		<action path="/create" forward="/pages/create.jsp"/>
+		<action path="/createContact" forward="/pages/createContact.jsp"/>
+		<action path="/createAddress" forward="/pages/createAddress.jsp"/>
+		<action path="/createPhoneNumber" forward="/pages/createPhoneNumber.jsp"/>
+		<action path="/createGroup" forward="/pages/createGroup.jsp"/>
+		
+		<action path="/Login" type="Actions.LoginAction"
+			name="LoginValidationForm" scope="request" input="/pages/login.jsp">
+			<forward name="success" path="/pages/index.jsp" />
+		</action>
+	</action-mappings>
+	<!-- ========== Ressources de definitions de messages =========================== -->
+	<message-resources parameter="Resources" />
+</struts-config>
