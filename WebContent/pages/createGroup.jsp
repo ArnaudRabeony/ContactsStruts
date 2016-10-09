@@ -19,7 +19,7 @@
 			ArrayList<Contact> contacts = cs.getContacts();
 			Boolean empty = contacts.isEmpty();
 		%>	
-		<form class="form-group form-group-sm " method="post" action="CreateGroup">
+		<form class="form-group form-group-sm " method="post" action="CreateGroup.do">
 			<div class="form-group form-group-sm">
 					<input class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorNomGroupe}" name="nomGroupe" id="nomGroupe" placeholder="Nom...">
 					<h4><small>Voulez-vous ajouter des membres à votre groupe ?</small></h4>
@@ -34,7 +34,7 @@
 								out.write("<div class='checkbox'><input name='addToGroup' type='checkbox' value='"+c.getId()+"'>"+c.getPrenom()+" "+c.getNom()+"</label></div>");
 						%>
 					</div>
-					<span style="color:red;" id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>
+					<html:errors/>
 					<button class="btn btn-primary" type="submit">Créer le groupe</button>
 				</div> 
 			</div>

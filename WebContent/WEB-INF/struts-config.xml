@@ -4,8 +4,10 @@
 "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
 <struts-config>
 	<form-beans>
-		<form-bean name="LoginValidationForm"
-			type="ActionForms.LoginValidationForm" />
+		<form-bean name="LoginValidationForm" type="ActionForms.LoginValidationForm" />
+		<form-bean name="CreateContactActionForm" type="ActionForms.CreateContactActionForm"/>
+		<form-bean name="CreatePhoneActionForm" type="ActionForms.CreatePhoneActionForm"/>
+		<form-bean name="CreateGroupActionForm" type="ActionForms.CreateGroupActionForm"/>
 	</form-beans>
 	<action-mappings>
 		<action path="/index" forward="/pages/index.jsp"/>
@@ -33,6 +35,27 @@
 			name="LoginValidationForm" scope="request" input="/pages/login.jsp">
 			<forward name="success" path="/pages/index.jsp" />
 		</action>
+		
+		<action path="/Create" type="Actions.CreateContactAction"
+			name="CreateContactActionForm" scope="request" input="/pages/createContact.jsp">
+			<forward name="success" path="/pages/index.jsp" />
+		</action>
+		
+		<action path="/CreateAddress" type="Actions.CreateAddressAction"
+			name="CreateAddressActionForm" scope="request" input="/pages/createAddress.jsp">
+			<forward name="success" path="/pages/index.jsp" />
+		</action>
+		
+		<action path="/CreatePhone" type="Actions.CreatePhoneAction"
+			name="CreatePhoneActionForm" scope="request" input="/pages/createPhoneNumber.jsp">
+			<forward name="success" path="/pages/index.jsp" />
+		</action>
+		
+		<action path="/CreateGroup" type="Actions.CreateGroupAction"
+			name="CreateGroupActionForm" scope="request" input="/pages/createGroup.jsp">
+			<forward name="success" path="/pages/index.jsp" />
+		</action>
+		
 	</action-mappings>
 	<!-- ========== Ressources de definitions de messages =========================== -->
 	<message-resources parameter="Resources" />

@@ -19,7 +19,7 @@
 			ArrayList<Contact> contacts = cs.getContacts();
 			Boolean empty = contacts.isEmpty();
 		%>	
-		<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="CreatePhone">
+		<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="CreatePhone.do">
 			<div class="form-group form-group-sm">
 					<label for="contactId" >Selectionnez le contact associé</label>
 					<select class="form-control col-md-3 col-md-3" name="contactId" id="contactId">
@@ -42,7 +42,7 @@
 						<option value="pro" selected>Professionnel</option>
 						<option value="perso">Personnel</option>
 					</select><br>
-					<span style="color:red;" id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>
+					<html:errors/>
 					<button class="btn btn-primary" type="submit">Créer le numéro</button>
 				</div> 
 			</div>
