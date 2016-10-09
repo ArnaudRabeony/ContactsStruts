@@ -21,6 +21,9 @@
 		<form-bean name="SearchPhoneActionForm" type="ActionForms.SearchPhoneActionForm"/>
 		<form-bean name="SearchContactActionForm" type="ActionForms.SearchContactActionForm"/>
 		
+		<form-bean name="UpdateAddressActionForm" type="ActionForms.UpdateAddressActionForm"/>
+		<form-bean name="UpdatePhoneActionForm" type="ActionForms.UpdatePhoneActionForm"/>
+		
 	</form-beans>
 	<action-mappings>
 		<action path="/index" forward="/pages/index.jsp"/>
@@ -108,7 +111,13 @@
 			name="UpdateAddressActionForm" scope="request" input="/pages/searchAddress.jsp">
 			<forward name="success" path="/pages/update.jsp" />
 		</action>
-		
+		<action path="/UpdatePhone" type="Actions.UpdatePhoneAction"
+			name="UpdatePhoneActionForm" scope="request" input="/pages/searchPhone.jsp">
+			<forward name="success" path="/pages/update.jsp" />
+			<forward name="alreadyExistsError" path="/pages/error.jsp" />
+			<forward name="doesNotExistsError" path="/pages/error.jsp" />
+		</action>
+
 	</action-mappings>
 	<!-- ========== Ressources de definitions de messages =========================== -->
 	<message-resources parameter="Resources" />

@@ -177,7 +177,7 @@ $(function()
 	$("body").on("click",".displayContact",function()
 	{
 		var id = $(this).parent().parent().attr("data-contactid");
-		window.location.href= "index.jsp?selectedId="+id;
+		window.location.href= "index.do?selectedId="+id;
 	});
 	
 	if($("#addressList li").length != 0 && $("#telephonesList li").length != 0)

@@ -4,7 +4,6 @@
 * Créer ActionForms + Actions
 * bean:message
 * Modification
-* Suppression
 * Session
 
 ### PRB
@@ -15,3 +14,5 @@
 
 ## DONE 
 * Création
+* Suppression
+* Affichage index + cartes

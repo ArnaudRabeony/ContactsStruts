@@ -9,33 +9,32 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import ActionForms.SearchAddressActionForm;
+import ActionForms.SearchPhoneActionForm;
 import Models.Adresse;
+import Models.Telephone;
 import ServiceEntities.AdresseService;
+import ServiceEntities.TelephoneService;
 
-public class SearchAddressAction extends Action
+public class SearchPhoneAction extends Action
 {
-	
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		SearchAddressActionForm f = (SearchAddressActionForm)form;
+		SearchPhoneActionForm f = (SearchPhoneActionForm)form;
 		
 		AdresseService cs = new AdresseService();
 		Adresse c = cs.getAdresseById(f.getSelectedId());
 		
-		if(c != null)
+		TelephoneService ts = new TelephoneService();
+		Telephone t = ts.getTelephoneById(f.getSelectedId());
+
+		if(t != null)
 		{
-			String num = c.getRue().split(" ")[0];
-			String rue = c.getRue().replace(num, "").substring(1);
-			request.setAttribute("errorId",f.getSelectedId());
-			request.setAttribute("errorNumero", num);
-			request.setAttribute("errorRue", rue);
-			request.setAttribute("errorVille", c.getVille());
-			request.setAttribute("errorCodePostal", c.getCodePostal());
-			request.setAttribute("errorPays", c.getPays());
-			request.getRequestDispatcher("searchAddress.jsp").forward(request, response);
+			System.out.println(t.getNumber());
+			request.setAttribute("errorPhoneType", t.getPhoneKind());
+			request.setAttribute("errorPhone", t.getNumber());
 			return mapping.findForward("success");
 		}
-		
-		return mapping.findForward("error");
+		else
+			return mapping.findForward("error");
 	}
 }

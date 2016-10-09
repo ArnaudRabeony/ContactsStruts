@@ -19,7 +19,7 @@
 		ArrayList<Telephone> telephones = ts.getTelephones();
 	%>	
 	<h3>Chercher un numéro de téléphone :</h3> <br>
-	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchPhone">
+	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchPhone.do">
 			<div class="form-group form-group-sm">
 			<label for="selectedId" >Selectionnez le numéro de téléphone</label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
@@ -49,7 +49,7 @@
 	{
 	%>
 	<span id="responseType"><%= request.getAttribute("errorPhoneType")%></span>
-	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdatePhone">
+	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdatePhone.do">
 		<input type="hidden" name="selectedId" value="<%=request.getParameter("selectedId")%>">
 		<input class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorPhone}" name="numeroTel" id="numeroTel" placeholder="N° téléphone...">
 		<select class="form-control col-md-3 col-md-3" name="type" id="type">
