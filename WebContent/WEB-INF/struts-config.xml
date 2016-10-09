@@ -5,9 +5,22 @@
 <struts-config>
 	<form-beans>
 		<form-bean name="LoginValidationForm" type="ActionForms.LoginValidationForm" />
+		
 		<form-bean name="CreateContactActionForm" type="ActionForms.CreateContactActionForm"/>
 		<form-bean name="CreatePhoneActionForm" type="ActionForms.CreatePhoneActionForm"/>
 		<form-bean name="CreateGroupActionForm" type="ActionForms.CreateGroupActionForm"/>
+		<form-bean name="CreateAddressActionForm" type="ActionForms.CreateAddressActionForm"/>
+		
+		<form-bean name="DeleteAddressActionForm" type="ActionForms.DeleteAddressActionForm"/>
+		<form-bean name="DeleteGroupActionForm" type="ActionForms.DeleteGroupActionForm"/>
+		<form-bean name="DeletePhoneActionForm" type="ActionForms.DeletePhoneActionForm"/>
+		<form-bean name="DeleteContactActionForm" type="ActionForms.DeleteContactActionForm"/>
+		
+		<form-bean name="SearchAddressActionForm" type="ActionForms.SearchAddressActionForm"/>
+		<form-bean name="SearchGroupActionForm" type="ActionForms.SearchGroupActionForm"/>
+		<form-bean name="SearchPhoneActionForm" type="ActionForms.SearchPhoneActionForm"/>
+		<form-bean name="SearchContactActionForm" type="ActionForms.SearchContactActionForm"/>
+		
 	</form-beans>
 	<action-mappings>
 		<action path="/index" forward="/pages/index.jsp"/>
@@ -40,20 +53,60 @@
 			name="CreateContactActionForm" scope="request" input="/pages/createContact.jsp">
 			<forward name="success" path="/pages/index.jsp" />
 		</action>
-		
 		<action path="/CreateAddress" type="Actions.CreateAddressAction"
 			name="CreateAddressActionForm" scope="request" input="/pages/createAddress.jsp">
 			<forward name="success" path="/pages/index.jsp" />
 		</action>
-		
 		<action path="/CreatePhone" type="Actions.CreatePhoneAction"
 			name="CreatePhoneActionForm" scope="request" input="/pages/createPhoneNumber.jsp">
 			<forward name="success" path="/pages/index.jsp" />
 		</action>
-		
 		<action path="/CreateGroup" type="Actions.CreateGroupAction"
 			name="CreateGroupActionForm" scope="request" input="/pages/createGroup.jsp">
 			<forward name="success" path="/pages/index.jsp" />
+		</action>
+		
+		<action path="/DeleteAddress" type="Actions.DeleteAddressAction"
+			name="DeleteAddressActionForm" scope="request" input="/pages/deleteAddress.jsp">
+			<forward name="success" path="/pages/delete.jsp" />
+		</action>
+		<action path="/DeleteGroup" type="Actions.DeleteGroupAction"
+			name="DeleteGroupActionForm" scope="request" input="/pages/deleteGroup.jsp">
+			<forward name="success" path="/pages/delete.jsp" />
+		</action>
+		<action path="/DeletePhone" type="Actions.DeletePhoneAction"
+			name="DeletePhoneActionForm" scope="request" input="/pages/deletePhoneNumber.jsp">
+			<forward name="success" path="/pages/delete.jsp" />
+		</action>
+		<action path="/DeleteContact" type="Actions.DeleteContactAction"
+			name="DeleteContactActionForm" scope="request" input="/pages/deleteContact.jsp">
+			<forward name="success" path="/pages/delete.jsp" />
+		</action>
+		
+		<action path="/SearchAddress" type="Actions.SearchAddressAction"
+			name="SearchAddressActionForm" scope="request" input="/pages/searchAddress.jsp">
+			<forward name="success" path="/pages/searchAddress.jsp" />
+			<forward name="error" path="/pages/update.jsp" />
+		</action>
+		<action path="/SearchGroup" type="Actions.SearchGroupAction"
+			name="SearchGroupActionForm" scope="request" input="/pages/searchGroup.jsp">
+			<forward name="success" path="/pages/searchGroup.jsp" />
+			<forward name="error" path="/pages/update.jsp" />		
+		</action>
+		<action path="/SearchPhone" type="Actions.SearchPhoneAction"
+			name="SearchPhoneActionForm" scope="request" input="/pages/searchPhone.jsp">
+			<forward name="success" path="/pages/searchPhone.jsp" />
+			<forward name="error" path="/pages/update.jsp" />		
+		</action>
+		<action path="/SearchContact" type="Actions.SearchContactAction"
+			name="SearchContactActionForm" scope="request" input="/pages/searchContact.jsp">
+			<forward name="success" path="/pages/searchContact.jsp" />
+			<forward name="error" path="/pages/update.jsp" />		
+		</action>
+		
+		<action path="/UpdateAddress" type="Actions.UpdateAddressAction"
+			name="UpdateAddressActionForm" scope="request" input="/pages/searchAddress.jsp">
+			<forward name="success" path="/pages/update.jsp" />
 		</action>
 		
 	</action-mappings>

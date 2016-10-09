@@ -7,7 +7,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-public class CreateAddressActionForm extends ActionForm
+public class UpdateAddressActionForm extends ActionForm
 {
 	/**
 	 * 
@@ -18,8 +18,18 @@ public class CreateAddressActionForm extends ActionForm
 	private String ville;
 	private String codep;
 	private String pays;
+	private int idAddress;
 	private int idContact;
 	
+	
+	public int getIdAddress() {
+		return idAddress;
+	}
+
+	public void setIdAddress(int idAddress) {
+		this.idAddress = idAddress;
+	}
+
 	public int getIdContact() {
 		return idContact;
 	}
@@ -65,13 +75,14 @@ public class CreateAddressActionForm extends ActionForm
 	{
 		ActionErrors errors = new ActionErrors();
 		
+		boolean idIsNullOrEmpty = this.getIdAddress() == 0;
 		boolean numIsNullOrEmpty = this.getNumeroAdresse() == null || this.getNumeroAdresse().isEmpty();
 		boolean rueIsNullOrEmpty = this.getRue() == null || this.getRue().isEmpty();
 		boolean codepIsNullOrEmpty = this.getCodep() == null || this.getCodep().isEmpty();
 		boolean villeIsNullOrEmpty = this.getVille() == null || this.getVille().isEmpty();
 		boolean paysIsNullOrEmpty = this.getPays() == null || this.getPays().isEmpty();
 		
-		if (numIsNullOrEmpty || rueIsNullOrEmpty || codepIsNullOrEmpty || villeIsNullOrEmpty || paysIsNullOrEmpty) 
+		if (idIsNullOrEmpty || numIsNullOrEmpty || rueIsNullOrEmpty || codepIsNullOrEmpty || villeIsNullOrEmpty || paysIsNullOrEmpty) 
 			errors.add("mainField", new ActionMessage("form.missingField"));
 		
 		return errors;

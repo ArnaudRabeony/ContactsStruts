@@ -19,7 +19,7 @@
 		ArrayList<Contact> contacts = cs.getContacts();
 		Boolean empty = contacts.isEmpty();
 	%>	
-	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="Delete">
+	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteContact.do">
 			<div class="form-group form-group-sm">
 			<label for="selectedId" >Selectionnez le contact</label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
@@ -30,6 +30,7 @@
 			%>
 			</select><br>
 			</div><br>
+			<html:errors/>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled>Supprimer</button>
 	</form>
 <jsp:include page="footer.jsp"/>

@@ -20,7 +20,7 @@
 		Boolean empty = adresses.isEmpty();
 	%>	
 	<h3>Chercher une adresse :</h3> <br>
-	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchAddress">
+	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchAddress.do">
 			<div class="form-group form-group-sm">
 			<label for="selectedId" >Selectionnez l'adresse</label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
@@ -30,11 +30,13 @@
 				{
 					ContactService cs = new ContactService();
 					Contact c = cs.getContactById(a.getIdContact());				
-					out.write("<option value='"+a.getId()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
+					out.write("<option value='"+a.getIdAddress()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
 				}		
 			%>
 			</select><br>
-			</div><br>
+			</div>
+			<html:errors/>
+			<br>
 <!-- 			<button class="btn btn-primary" type="submit">Chercher</button> -->
 	</form>
 	
@@ -44,7 +46,7 @@
 	if(request.getParameter("selectedId")!=null)
 	{
 	%>
-	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateAddress">
+	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateAddress.do">
 		<input class="inputPadding form-control" type="number" name="idAddress" id="idAddress" value="${errorId}" placeholder="ID..."><br>	
 		<input class="form-control form-control-sm inputPadding" type="text" name="numeroAdresse" id="numeroAdresse" value="${errorNumero}" placeholder="N°...">
 		<input class="form-control inputPadding" type="text" name="rue" id="rue" value="${errorRue}" placeholder="Rue...">

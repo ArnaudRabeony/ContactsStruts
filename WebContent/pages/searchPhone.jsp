@@ -38,6 +38,7 @@
 			%>
 			</select><br>
 			</div><br>
+						<html:errors/>
 <!-- 			<button class="btn btn-primary" type="submit">Chercher</button> -->
 	</form>
 	

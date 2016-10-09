@@ -14,17 +14,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
 <jsp:include page="header.jsp"/>
-	<h3>Supprimer un numéro de téléphone :</h3> <br>
+	<h3>Suppression de numéros de téléphone :</h3> <br>
 	
 	<% 
 		TelephoneService ts = new TelephoneService();
 		ArrayList<Telephone> telephones = ts.getTelephones();
 	%>	
-	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeletePhone">
+	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeletePhone.do">
 			<div class="form-group form-group-sm">
-			<label>Selectionnez le numéro</label><br>
+			<label>Selectionnez les numéros à supprimer</label><br>
 <!-- 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId"> -->
-<!-- 				<option value="-1">Selectionnez un numéro...</option> -->
+<!-- 				<option value="-1">Selectionnez les numéros à supprimer ...</option> -->
 			<%
 				for(Telephone t : telephones)
 				{
@@ -38,7 +38,8 @@
 				}
 			%>
 <!-- 			</select><br> -->
-			</div><br>
+			</div>
+			<html:errors/><br>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled>Supprimer</button>
 	</form>
 <jsp:include page="footer.jsp"/>

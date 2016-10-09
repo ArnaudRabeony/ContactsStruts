@@ -18,7 +18,7 @@
 		GroupeService gs = new GroupeService();
 		ArrayList<Groupe> groupes = gs.getGroups();
 	%>	
-	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteGroup">
+	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteGroup.do">
 			<div class="form-group form-group-sm">
 			<label for="selectedId" >Selectionnez le groupe</label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
@@ -28,7 +28,8 @@
 					out.write("<option value='"+g.getId()+"'>"+g.getNom()+" - "+gs.getContacts(g.getId()).size()+" contact(s)</option>");
 			%>
 			</select><br>
-			</div><br>
+			</div>
+			<html:errors/><br>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled>Supprimer</button>
 	</form>
 <jsp:include page="footer.jsp"/>

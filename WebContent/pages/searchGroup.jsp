@@ -56,7 +56,7 @@
 						out.write("<input type='checkbox' name='members' value='"+c.getId()+"'> "+c.getPrenom()+" "+c.getNom()+"</input><br>");
 				}
 		%>
-		<span id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>		
+			<html:errors/><br>
 		<button class="btn btn-primary" type="submit">Mettre à jour</button>
 	</form>
 		<%

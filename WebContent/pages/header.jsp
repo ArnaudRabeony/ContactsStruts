@@ -3,6 +3,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 
 <header>
         <!--Navbar-->

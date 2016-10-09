@@ -20,7 +20,7 @@
 		AdresseService as = new AdresseService();
 		ArrayList<Adresse> adresses = as.getAdresses();
 	%>	
-	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteAddress">
+	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteAddress.do">
 			<div class="form-group form-group-sm">
 			<label for="selectedId" >Selectionnez l'adresse</label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
@@ -30,11 +30,12 @@
 				{
 					ContactService cs = new ContactService();
 					Contact c = cs.getContactById(a.getIdContact());				
-					out.write("<option value='"+a.getId()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
+					out.write("<option value='"+a.getIdAddress()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
 				}
 			%>
 			</select><br>
 			</div><br>
+			<html:errors/>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled>Supprimer</button>
 	</form>
 <jsp:include page="footer.jsp"/>

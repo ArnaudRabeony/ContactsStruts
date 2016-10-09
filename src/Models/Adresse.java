@@ -2,7 +2,7 @@ package Models;
 
 public class Adresse {
 	
-	private int id;
+	private int idAddress;
 	private String rue;
 	private String ville;
 	private String codePostal;
@@ -20,7 +20,7 @@ public class Adresse {
 	public Adresse(int id, String rue, String ville, String codePostal,
 			String pays) {
 		super();
-		this.id = id;
+		this.idAddress = id;
 		this.rue = rue;
 		this.ville = ville;
 		this.codePostal = codePostal;
@@ -30,7 +30,7 @@ public class Adresse {
 	public Adresse(int id, String rue, String ville, String codePostal,
 			String pays, int idContact) {
 		super();
-		this.id = id;
+		this.idAddress = id;
 		this.rue = rue;
 		this.ville = ville;
 		this.codePostal = codePostal;
@@ -45,12 +45,11 @@ public class Adresse {
 	public void setIdContact(int idContact) {
 		this.idContact = idContact;
 	}
-
-	public int getId() {
-		return id;
+	public int getIdAddress() {
+		return idAddress;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdAddress(int idAddress) {
+		this.idAddress = idAddress;
 	}
 	public String getRue() {
 		return rue;

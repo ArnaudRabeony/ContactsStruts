@@ -69,7 +69,7 @@
 		<input class="inputPadding form-control" type="text" name="nom" id="nom" value="${nomResult}" placeholder="Nouveau nom..."><br>
 		<input class="inputPadding form-control" type="text" name="prenom" id="prenom" value="${prenomResult}" placeholder="Nouveau prénom..."><br>
 		<input class="inputPadding form-control" type="text" name="email" id="email" value="${emailResult}" placeholder="Nouvelle adresse mail..."><br>
-		<span id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>		
+		<html:errors/><br>		
 		<button class="btn btn-primary" type="submit">Modifier le contact</button>
 	</form>
 	</div>

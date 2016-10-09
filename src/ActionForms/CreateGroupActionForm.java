@@ -13,6 +13,10 @@ import ServiceEntities.TelephoneService;
 
 public class CreateGroupActionForm extends ActionForm
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String nomGroupe;
 	String addMembers;
 	String[] addToGroup;

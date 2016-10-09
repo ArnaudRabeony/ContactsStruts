@@ -27,7 +27,7 @@
 			ArrayList<Contact> contacts = cs.getContacts();
 			Boolean empty = contacts.isEmpty();
 		%>	
-		<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="CreateAddress">
+		<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="CreateAddress.do">
 			<div class="form-group form-group-sm">
 					<label for="contactId" >Selectionnez le contact associé</label>
 					<select class="form-control col-md-3 col-md-3" name="contactId" id="contactId">
@@ -50,7 +50,7 @@
 					<input class="form-control inputPadding" type="text" name="ville" id="ville" value="${errorVille}" placeholder="Ville...">
 					<input class="form-control inputPadding" type="text" name="codep" id="codep" value="${errorCodePostal}" placeholder="Code Postal...">
 					<input class="form-control inputPadding" type="text" name="pays" id="pays" value="${errorPays}" placeholder="Pays...">
-					<span style="color:red;" id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>
+					<html:errors/><br>
 					<button class="btn btn-primary" type="submit">Créer l'adresse</button>
 				</div> 
 			</div>
