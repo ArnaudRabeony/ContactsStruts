@@ -46,15 +46,20 @@ public class UpdatePhoneActionForm extends ActionForm
 	public ActionErrors validate(ActionMapping mapping,	HttpServletRequest request) 
 		{
 			ActionErrors errors = new ActionErrors();
-			
+			System.out.println(this.getNumeroTel());
 			boolean idIsNullOrEmpty = this.getSelectedId() == 0;
 			boolean numIsNullOrEmpty = this.getNumeroTel() == null || this.getNumeroTel().isEmpty();
 			boolean typeIsNullOrEmpty = this.getType() == null || this.getType().isEmpty();
-			boolean contactIsNullOrEmpty = this.getContactId()==0;
+			boolean contactIsNullOrEmpty = this.getSelectedId()==0;
 			
+			System.out.println(idIsNullOrEmpty);
+			System.out.println(numIsNullOrEmpty);
+			System.out.println(typeIsNullOrEmpty);
+			System.out.println(contactIsNullOrEmpty);
 			if (idIsNullOrEmpty || numIsNullOrEmpty || typeIsNullOrEmpty || contactIsNullOrEmpty) 
 				errors.add("mainField", new ActionMessage("form.missingField"));
 			
+			System.out.println("taille error : "+errors.size());
 			return errors;
 		}
 	

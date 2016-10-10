@@ -17,7 +17,6 @@
 	<% 
 		AdresseService as = new AdresseService();
 		ArrayList<Adresse> adresses = as.getAdresses();
-		Boolean empty = adresses.isEmpty();
 	%>	
 	<h3>Chercher une adresse :</h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchAddress.do">
@@ -29,8 +28,12 @@
 				for(Adresse a : adresses)
 				{
 					ContactService cs = new ContactService();
-					Contact c = cs.getContactById(a.getIdContact());				
-					out.write("<option value='"+a.getIdAddress()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
+					Contact c = cs.getContactById(a.getIdContact());
+					out.write(a.getIdAddress());
+					if(c!=null)
+						out.write("<option value='"+a.getIdAddress()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
+					else
+						out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
 				}		
 			%>
 			</select><br>

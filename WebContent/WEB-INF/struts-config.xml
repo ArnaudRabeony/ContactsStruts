@@ -23,6 +23,7 @@
 		
 		<form-bean name="UpdateAddressActionForm" type="ActionForms.UpdateAddressActionForm"/>
 		<form-bean name="UpdatePhoneActionForm" type="ActionForms.UpdatePhoneActionForm"/>
+		<form-bean name="UpdateGroupActionForm" type="ActionForms.UpdateGroupActionForm"/>
 		
 	</form-beans>
 	<action-mappings>
@@ -117,6 +118,12 @@
 			<forward name="alreadyExistsError" path="/pages/error.jsp" />
 			<forward name="doesNotExistsError" path="/pages/error.jsp" />
 		</action>
+		<action path="/UpdateGroup" type="Actions.UpdateGroupAction"
+			name="UpdateGroupActionForm" scope="request" input="/pages/searchGroup.jsp">
+			<forward name="success" path="/pages/update.jsp" />
+			<forward name="error" path="/pages/error.jsp" />
+		</action>
+		
 
 	</action-mappings>
 	<!-- ========== Ressources de definitions de messages =========================== -->

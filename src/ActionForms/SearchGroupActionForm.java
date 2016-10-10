@@ -7,12 +7,10 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import Models.Adresse;
-import ServiceEntities.AdresseService;
+import ServiceEntities.GroupeService;
 
-public class SearchAddressActionForm extends ActionForm
+public class SearchGroupActionForm extends ActionForm
 {
-
 	/**
 	 * 
 	 */
@@ -30,17 +28,18 @@ public class SearchAddressActionForm extends ActionForm
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request)
 	{
 		ActionErrors errors = new ActionErrors();
-		
+		System.out.println("Search group : "+this.getSelectedId());
+
 		boolean idIsNullOrEmpty = this.getSelectedId() == -1;
 		
 		if(!idIsNullOrEmpty)
 		{
-			System.out.println(this.getSelectedId());
-			AdresseService as = new AdresseService();
-			if(!as.addressExists(this.getSelectedId()))
-				errors.add("invalid", new ActionMessage("form.address.doesNotExists"));
+			GroupeService gs = new GroupeService();
+			if(!gs.groupExists(this.getSelectedId()))
+				errors.add("invalid", new ActionMessage("form.group.doesNotExists"));
 		}
 
+		System.out.println(errors.size());
 		return errors;
 	}
 }

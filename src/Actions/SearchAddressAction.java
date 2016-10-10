@@ -21,7 +21,7 @@ public class SearchAddressAction extends Action
 		
 		AdresseService cs = new AdresseService();
 		Adresse c = cs.getAdresseById(f.getSelectedId());
-		
+
 		if(c != null)
 		{
 			String num = c.getRue().split(" ")[0];
@@ -32,7 +32,6 @@ public class SearchAddressAction extends Action
 			request.setAttribute("errorVille", c.getVille());
 			request.setAttribute("errorCodePostal", c.getCodePostal());
 			request.setAttribute("errorPays", c.getPays());
-			request.getRequestDispatcher("searchAddress.jsp").forward(request, response);
 			return mapping.findForward("success");
 		}
 		

@@ -56,6 +56,7 @@
 				<option value="pro">Professionnel</option>
 				<option value="perso">Personnel</option>
 		</select><br>
+		<html:errors/>
 		<span id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>		
 		<button class="btn btn-primary" type="submit">Mettre à jour</button>
 	</form>
