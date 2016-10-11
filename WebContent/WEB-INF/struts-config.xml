@@ -53,6 +53,11 @@
 			<forward name="success" path="/pages/index.jsp" />
 		</action>
 		
+		<action path="/Logout" type="Actions.LoginAction"
+			 scope="request" input="/pages/index.jsp">
+			<forward name="success" path="/pages/login.jsp" />
+		</action>
+		
 		<action path="/Create" type="Actions.CreateContactAction"
 			name="CreateContactActionForm" scope="request" input="/pages/createContact.jsp">
 			<forward name="success" path="/pages/index.jsp" />

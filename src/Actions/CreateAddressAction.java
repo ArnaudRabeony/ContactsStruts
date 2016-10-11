@@ -18,7 +18,7 @@ public class CreateAddressAction extends Action
 		CreateAddressActionForm f = (CreateAddressActionForm)form;
 		
 		AdresseService as = new AdresseService();
-		as.createAdresse(f.getNumeroAdresse()+" "+f.getRue(), f.getVille(), f.getCodep(), f.getPays(),f.getIdContact());
+		as.createAdresse(f.getNumeroAdresse()+" "+f.getRue(), f.getVille(), f.getCodep(), f.getPays(),f.getContactId());
 		
 		return mapping.findForward("success");
 	}

@@ -13,7 +13,7 @@
                     <!--Navbar icons-->
                     <ul class="nav navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                        	<button id="logout" class="btn btn-sm btn-default">Deconnexion</button>
+                        	<button id="logout" class="btn btn-sm btn-default"><a href="Logout.do">Deconnexion</a></button>
                         </li>
                     </ul>
             </div>

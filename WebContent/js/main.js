@@ -29,12 +29,6 @@ $(function()
 				$(e.target).css("border-color","#5bc0de").css("box-shadow","0px 0px 0px #FFF").css("border","1px solid #ccc");
 			});
 			
-			$("#logout").click(function()
-			{
-				alert("logout");
-				$.get("Logout");
-			});
-			
 			$("body").on("click","#deleteRow",function()
 			{
 				$.post("Delete",

@@ -50,7 +50,7 @@
 	{
 	%>
 	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateAddress.do">
-		<input class="inputPadding form-control" type="number" name="idAddress" id="idAddress" value="${errorId}" placeholder="ID..."><br>	
+		<input class="inputPadding form-control" type="hidden" name="idAddress" id="idAddress" value="${errorId}" placeholder="ID..."><br>	
 		<input class="form-control form-control-sm inputPadding" type="text" name="numeroAdresse" id="numeroAdresse" value="${errorNumero}" placeholder="N°...">
 		<input class="form-control inputPadding" type="text" name="rue" id="rue" value="${errorRue}" placeholder="Rue...">
 		<input class="form-control inputPadding" type="text" name="ville" id="ville" value="${errorVille}" placeholder="Ville...">

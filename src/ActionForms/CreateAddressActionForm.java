@@ -18,14 +18,14 @@ public class CreateAddressActionForm extends ActionForm
 	private String ville;
 	private String codep;
 	private String pays;
-	private int idContact;
+	private int contactId;
 	
-	public int getIdContact() {
-		return idContact;
+	public int getContactId() {
+		return contactId;
 	}
 
-	public void setIdContact(int idContact) {
-		this.idContact = idContact;
+	public void setContactId(int contactId) {
+		this.contactId = contactId;
 	}
 
 	public String getNumeroAdresse() {
@@ -70,8 +70,9 @@ public class CreateAddressActionForm extends ActionForm
 		boolean codepIsNullOrEmpty = this.getCodep() == null || this.getCodep().isEmpty();
 		boolean villeIsNullOrEmpty = this.getVille() == null || this.getVille().isEmpty();
 		boolean paysIsNullOrEmpty = this.getPays() == null || this.getPays().isEmpty();
+		boolean idContactIsNullOrEmpty = this.getContactId() == 0;
 		
-		if (numIsNullOrEmpty || rueIsNullOrEmpty || codepIsNullOrEmpty || villeIsNullOrEmpty || paysIsNullOrEmpty) 
+		if (idContactIsNullOrEmpty || numIsNullOrEmpty || rueIsNullOrEmpty || codepIsNullOrEmpty || villeIsNullOrEmpty || paysIsNullOrEmpty) 
 			errors.add("mainField", new ActionMessage("form.missingField"));
 		
 		return errors;
