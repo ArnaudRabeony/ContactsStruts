@@ -3,13 +3,14 @@
 <%@page import="Models.Contact"%>
 <%@page import="ServiceEntities.GroupeService"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><bean:message key="main.title"/></title>
 </head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
@@ -18,12 +19,12 @@
 		GroupeService gs = new GroupeService();
 		ArrayList<Groupe> groupes = gs.getGroups();
 	%>	
-	<h3>Chercher un groupe :</h3> <br>
+	<h3><bean:message key="search.group.title"/></h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchGroup.do">
-			<div class="form-group form-group-sm">
-			<label for="selectedId" >Selectionnez le groupe</label><br>
+			<div class="form-group form-group-sm">			
+			<label for="selectedId" ><bean:message key="group.select"/></label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
-				<option value="-1">Selectionnez un groupe...</option>
+				<option value="-1"><bean:message key="group.placeholder"/></option>
 			<%
 				for(Groupe g : groupes)
 					out.write("<option value='"+g.getId()+"'>"+g.getNom()+"</option>");
@@ -57,7 +58,7 @@
 				}
 		%>
 			<html:errors/><br>
-		<button class="btn btn-primary" type="submit">Mettre à jour</button>
+		<button class="btn btn-primary" type="submit"><bean:message key="update"/></button>
 	</form>
 		<%
 	}

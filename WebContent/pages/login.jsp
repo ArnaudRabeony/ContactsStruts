@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><bean:message key="main.title"/></title>
 </head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -15,8 +15,8 @@
 
 	<h1><bean:message key="login.title"/></h1><br>
 	<form class="form-group col-sm-4 col-md-4 col-md-offset-4" method="get" action="Login.do">
-		<label for="name">Nom : </label><input class="form-control" type="text" name="nom" id="nom" value="${errorNom}"><br>
-		<label for="password">Password : </label><input class="form-control" type="password" name="password" id="password"><br>
+		<label for="name"><bean:message key="login.name"/></label><input class="form-control" type="text" name="nom" id="nom" value="${errorNom}"><br>
+		<label for="password"><bean:message key="login.password"/></label><input class="form-control" type="password" name="password" id="password"><br>
 		<html:errors/><br><br>
   		<button type="submit" class="btn btn-primary"><bean:message key="login.connection"/></button>
 	</form>

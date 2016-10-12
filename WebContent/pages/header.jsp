@@ -3,6 +3,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 
 <header>
@@ -13,7 +14,7 @@
                     <!--Navbar icons-->
                     <ul class="nav navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                        	<button id="logout" class="btn btn-sm btn-default"><a href="Logout.do">Deconnexion</a></button>
+                        	<button id="logout" class="btn btn-sm btn-default"><a href="Logout.do"><bean:message key="logout"/></a></button>
                         </li>
                     </ul>
             </div>
@@ -30,4 +31,4 @@
 		<a href="update.do" class="btn btn-success btn-fab-mini"><i class="material-icons">mode_edit</i></a>
 	</div>
 	<div id="rightPanel" class="col-sm-11 col-mg-11">
-		<h5 style="float:right">Bonjour, ${sessionScope.nom}</h5>
+		<h5 style="float:right"><bean:message key="welcome.message" arg0="${sessionScope.nom}"/></h5>

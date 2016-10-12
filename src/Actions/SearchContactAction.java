@@ -8,27 +8,30 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import ActionForms.SearchAddressActionForm;
+import ActionForms.SearchContactActionForm;
 import ActionForms.SearchPhoneActionForm;
 import Models.Adresse;
+import Models.Contact;
 import Models.Telephone;
 import ServiceEntities.AdresseService;
+import ServiceEntities.ContactService;
 import ServiceEntities.TelephoneService;
 
-public class SearchPhoneAction extends Action
+public class SearchContactAction  extends Action
 {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		SearchPhoneActionForm f = (SearchPhoneActionForm)form;
+		SearchContactActionForm f = (SearchContactActionForm)form;
 		
-		TelephoneService ts = new TelephoneService();
-		Telephone t = ts.getTelephoneById(f.getSelectedId());
-
-		if(t != null)
+		ContactService cs = new ContactService();
+		Contact c = cs.getContactById(f.getSelectedId());
+		
+		if(c != null)
 		{
-			System.out.println(t.getNumber());
-			request.setAttribute("errorPhoneType", t.getPhoneKind());
-			request.setAttribute("errorPhone", t.getNumber());
+			request.setAttribute("nomResult", c.getNom());
+			request.setAttribute("prenomResult", c.getPrenom());
+			request.setAttribute("emailResult", c.getEmail());
+			request.setAttribute("idResult", c.getId());
 			return mapping.findForward("success");
 		}
 		else

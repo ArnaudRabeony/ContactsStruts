@@ -3,13 +3,14 @@
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><bean:message key="main.title"/></title>
 </head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
@@ -18,12 +19,12 @@
 		AdresseService as = new AdresseService();
 		ArrayList<Adresse> adresses = as.getAdresses();
 	%>	
-	<h3>Chercher une adresse :</h3> <br>
+	<h3><bean:message key="search.address.title"/></h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchAddress.do">
-			<div class="form-group form-group-sm">
-			<label for="selectedId" >Selectionnez l'adresse</label><br>
+			<div class="form-group form-group-sm">			
+			<label for="selectedId" ><bean:message key="address.select"/></label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
-				<option value="-1">Selectionnez une adresse...</option>
+				<option value="-1"><bean:message key="address.placeholder"/></option>
 			<%
 				for(Adresse a : adresses)
 				{
@@ -57,7 +58,7 @@
 		<input class="form-control inputPadding" type="text" name="codep" id="codep" value="${errorCodePostal}" placeholder="Code Postal...">
 		<input class="form-control inputPadding" type="text" name="pays" id="pays" value="${errorPays}" placeholder="Pays...">
 		<span id="errorMessage" data-type="${errorType}"><i>${errorMessage}</i></span><br>		
-		<button class="btn btn-primary" type="submit">Mettre à jour</button>
+		<button class="btn btn-primary" type="submit"><bean:message key="update"/></button>
 	</form>
 		<%
 	}

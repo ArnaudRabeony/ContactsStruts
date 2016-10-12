@@ -8,6 +8,8 @@
 <%@page import="Models.Contact"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,14 +29,13 @@
 	ArrayList<Groupe> groupes = gs.getGroups();
 
 	String selectedId = request.getParameter("selectedId")!=null ? request.getParameter("selectedId") : "";
-	String display = selectedId.isEmpty() ? "style='display:none'" : "style='dipslay:block'";
 %>
 
 	<div class="row">
 		<div class="col-md-4 col-sm-4">
-			<h3><small>Liste des groupes </small></h3><br>
+			<h3><small><bean:message key="index.groups"/></small></h3><br>
 			<div class="form-group form-group-sm label-floating is-empty">
-			  <input class="form-control" style="width:45%" id="searchContact" type="text" placeholder="Nom, prenom...">
+			  <input class="form-control" style="width:45%" id="searchContact" type="text" placeholder="<bean:message key="index.search.placeholder"/>">
 			</div>
 			 
 		<div class="groupPanel panel-group">
@@ -48,7 +49,7 @@
 	
 			    <div class="panel panel-default">
 			      <div data-toggle="collapse" data-target="#collapse<%=g.getId() %>" class="panel-heading" data-group="<%= g.getId()%>">
-			        <h4 class="panel-title">
+			        <h4 class="panel-title">	
 			          <%= g.getNom() %>
 			          <span style="float:right"><%= members.size() %></span>
 			        </h4>

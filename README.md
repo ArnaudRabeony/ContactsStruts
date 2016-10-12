@@ -1,9 +1,11 @@
 # ContactsStruts
 
 ## TODO
-* Créer ActionForms + Actions
-* bean:message
 * Session
+* Afficher erreurs formulaires
+* classe méthodes d'affichages
+* Supprimer doublons link css (header)
+* messages anglais
 
 ### PRB
 * Création contact : validation des champs optionnels (Adresse + Telephone)
@@ -14,4 +16,6 @@
 * Suppression
 * Modification
 * Affichage index + cartes
+* messages français
+
 

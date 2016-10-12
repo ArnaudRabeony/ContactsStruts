@@ -5,26 +5,27 @@
 <%@page import="Models.Contact"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><bean:message key="main.title"/></title>
 </head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
 <jsp:include page="header.jsp"/>
-	<h3>Suppression de numéros de téléphone :</h3> <br>
 	
 	<% 
 		TelephoneService ts = new TelephoneService();
 		ArrayList<Telephone> telephones = ts.getTelephones();
 	%>	
+	<h3><bean:message key="delete.phone.title"/></h3> <br>
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeletePhone.do">
-			<div class="form-group form-group-sm">
-			<label>Selectionnez les numéros à supprimer</label><br>
-<!-- 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId"> -->
-<!-- 				<option value="-1">Selectionnez les numéros à supprimer ...</option> -->
+			<div class="form-group form-group-sm">			
+			<label for="selectedId" ><bean:message key="phone.select"/></label><br>
+			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
+				<option value="-1"><bean:message key="phone.placeholder"/></option>
 			<%
 				for(Telephone t : telephones)
 				{
@@ -40,7 +41,7 @@
 <!-- 			</select><br> -->
 			</div>
 			<html:errors/><br>
-			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled>Supprimer</button>
+			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>
 	</form>
 <jsp:include page="footer.jsp"/>
 <script>
