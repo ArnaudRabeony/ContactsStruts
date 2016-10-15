@@ -22,12 +22,12 @@
 		<form class="form-group form-group-sm " method="post" action="CreateGroup.do">
 			<div class="form-group form-group-sm">
 					<input class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorNomGroupe}" name="nomGroupe" id="nomGroupe" placeholder="<bean:message key="create.group.placeholder.name"/>">
-					<h4><small><bean:message key="create.group.placeholder.name"/></small></h4>
+					<h4><small><bean:message key="create.group.question"/></small></h4>
 					<label class="radio-inline"><input type="radio" name="addMembers" value="y"><bean:message key="yes"/></label>
 					<label class="radio-inline"><input type="radio" name="addMembers" value="n" checked><bean:message key="no"/></label><br><br>
 					
 					<div id="membersSelection">
-						<h4><small>Veuillez selecitonner les membres à ajouter ?</small></h4>
+						<h4><small><bean:message key="create.group.select"/></small></h4>
 						<hr>
 						<%
 							for(Contact c : contacts)

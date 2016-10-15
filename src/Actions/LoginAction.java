@@ -1,5 +1,7 @@
 package Actions;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import ActionForms.LoginValidationForm;
+import Models.Groupe;
+import ServiceEntities.GroupeService;
 
 public class LoginAction extends Action
 {
@@ -21,6 +25,11 @@ public class LoginAction extends Action
 		 if(session == null)
 			 session.setAttribute("nom", f.getNom());
 		
+		 GroupeService gs = new GroupeService();
+		 ArrayList<Groupe> groupes = gs.getGroups();
+		 
+		 pRequest.setAttribute("groupes", groupes);
+		 
 		 return pMapping.findForward("success");
 	}
 }

@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="css/main.css">
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <header>
         <!--Navbar-->
         <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar mdb-gradient top-nav-collapse">
@@ -13,6 +14,12 @@
             	<span class="navbar-brand" style="color:azure;cursor:default;">Gestionnaire de contacts</span>
                     <!--Navbar icons-->
                     <ul class="nav navbar-nav nav-flex-icons">
+                        	<form id="langForm">
+                        		<select id="lang" name="lang">
+                        			<option value="fr" selected>FR</option>
+                        			<option value="en">EN</option>
+                        		</select>
+                        	</form>
                         <li class="nav-item">
                         	<button id="logout" class="btn btn-sm btn-default"><a href="Logout.do"><bean:message key="logout"/></a></button>
                         </li>
@@ -21,7 +28,6 @@
         </nav>
         <!--/.Navbar-->
 </header>
-
 <div class="row">
 	<div id="fabContainer" class="col-sm-1 col-mg-1">
 		<a href="index.do" class="btn btn-info btn-fab-mini"><i class="material-icons">home</i></a>

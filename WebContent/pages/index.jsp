@@ -9,6 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -41,6 +42,7 @@
 		<div class="groupPanel panel-group">
 	
 	<!-- 	foreach group g => g.getName() + getNbContactByGroup()	 -->
+	
 	 <%
 		for(Groupe g : groupes)
 		{
@@ -56,13 +58,16 @@
 			      </div>
 			      <div id="collapse<%=g.getId() %>" class="panel-collapse collapse">
 			        <ul class="list-group">
+<%-- 			        <c:forEach items="${members}" var="contact"> --%>
+<%-- 						<li class='list-group-item contactItem' data-contactid='${contact.id}'>${contact.nom} ${contact.Prenom} --%>
+<!-- 							<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li> -->
+<%-- 					</c:forEach> --%>
 			          <%
 							String line = "";
 							for(Contact c : members)
 								line+="<li class='list-group-item contactItem' data-contactid='"+c.getId()+"'>"+c.getNom()+" "+c.getPrenom()+"<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li>";
 							out.write(line);
 						%>
-			        </ul>
 			        </ul>
 			      </div>
 			    </div>
@@ -88,7 +93,6 @@
 							line+="<li class='list-group-item contactItem' data-contactid='"+c.getId()+"'>"+c.getNom()+" "+c.getPrenom()+"<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li>";
 						out.write(line);
 					%>
-		        </ul>
 		        </ul>
 		      </div>
 		    </div>

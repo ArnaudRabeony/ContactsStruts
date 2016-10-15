@@ -24,8 +24,6 @@
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeletePhone.do">
 			<div class="form-group form-group-sm">			
 			<label for="selectedId" ><bean:message key="phone.select"/></label><br>
-			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
-				<option value="-1"><bean:message key="phone.placeholder"/></option>
 			<%
 				for(Telephone t : telephones)
 				{

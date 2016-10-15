@@ -5,6 +5,7 @@
 <struts-config>
 	<form-beans>
 		<form-bean name="LoginValidationForm" type="ActionForms.LoginValidationForm" />
+		<form-bean name="SwitchLanguageActionForm" type="ActionForms.SwitchLanguageActionForm" />
 		
 		<form-bean name="CreateContactActionForm" type="ActionForms.CreateContactActionForm"/>
 		<form-bean name="CreatePhoneActionForm" type="ActionForms.CreatePhoneActionForm"/>
@@ -47,6 +48,11 @@
 		<action path="/createAddress" forward="/pages/createAddress.jsp"/>
 		<action path="/createPhoneNumber" forward="/pages/createPhoneNumber.jsp"/>
 		<action path="/createGroup" forward="/pages/createGroup.jsp"/>
+		
+		<action path="/Switch" type="Actions.SwitchLanguage"
+			name="SwitchLanguageActionForm" scope="request" input="/pages/login.jsp">
+			<forward name="success" path="/pages/index.jsp" />
+		</action>
 		
 		<action path="/Login" type="Actions.LoginAction"
 			name="LoginValidationForm" scope="request" input="/pages/login.jsp">
@@ -132,5 +138,5 @@
 
 	</action-mappings>
 	<!-- ========== Ressources de definitions de messages =========================== -->
-	<message-resources parameter="Resources" />
+	<message-resources parameter="i18n.Resources" />
 </struts-config>

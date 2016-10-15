@@ -44,4 +44,15 @@ $(function()
 			
 			if($("#resultNom").text() != "")
 				$(".table").show();
+			
+			$('#lang').change(function()
+			{
+		 		var lang = $(this).val();
+//		 				alert(lang);
+				
+				$.get("Switch.do",
+				{
+					lang:lang
+				});
+			});
 		});
