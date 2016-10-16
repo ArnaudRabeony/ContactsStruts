@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
 <%@page import="Models.Contact"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
         <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
@@ -17,19 +18,16 @@
 	<% 
 		ContactService cs = new ContactService();
 		ArrayList<Contact> contacts = cs.getContacts();
-		Boolean empty = contacts.isEmpty();
 	%>	
 	<h3><bean:message key="delete.contact.title"/></h3> <br>
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteContact.do">
 			<div class="form-group form-group-sm">			
 			<label for="selectedId" ><bean:message key="contact.select"/></label><br>
-			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
-				<option value="-1"><bean:message key="contact.placeholder"/></option>
 			<%
 				for(Contact c : contacts)
-					out.write("<option value='"+c.getId()+"'>"+c.getPrenom()+" "+c.getNom()+"</option>");
+						out.write("<input type='checkbox' name='idsToDelete' value='"+c.getId()+"'> "+c.getPrenom()+" "+c.getNom()+"</input><br>");
 			%>
-			</select><br>
+<!-- 			</select><br> -->
 			</div><br>
 			<html:errors/>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>

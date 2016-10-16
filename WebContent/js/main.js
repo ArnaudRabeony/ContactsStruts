@@ -55,4 +55,13 @@ $(function()
 					lang:lang
 				});
 			});
+			
+			$("body").on("change","input:checkbox",function()
+			{
+				var value =$("input:checkbox:checked").length;
+				if(value==0)
+					$("#deleteBtn").attr("disabled",true);
+				else if(value>0)
+					$("#deleteBtn").attr("disabled",false);
+			});
 		});

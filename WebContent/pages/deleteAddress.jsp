@@ -3,6 +3,7 @@
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="Models.Adresse"%>
 <%@page import="Models.Contact"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
@@ -24,13 +25,10 @@
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteAddress.do">
 			<div class="form-group form-group-sm">			
 			<label for="selectedId" ><bean:message key="address.select"/></label><br>
-			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
-				<option value="-1"><bean:message key="address.placeholder"/></option>
 			<%
 				for(Adresse a : adresses)
-					out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
+					out.write("<input type='checkbox' name='idsToDelete' value='"+a.getIdAddress()+"'> "+a.getRue()+", "+a.getCodePostal()+"</option><br>");
 			%>
-			</select><br>
 			</div><br>
 			<html:errors/>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>

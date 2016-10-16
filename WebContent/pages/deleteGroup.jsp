@@ -2,6 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.GroupeService"%>
 <%@page import="Models.Groupe"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
@@ -24,14 +25,12 @@
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteGroup.do">
 			<div class="form-group form-group-sm">			
 			<label for="selectedId" ><bean:message key="group.select"/></label><br>
-			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
-				<option value="-1"><bean:message key="group.placeholder"/></option>
 			<%
 				for(Groupe g : groupes)
-					out.write("<option value='"+g.getId()+"'>"+g.getNom()+" - "+ms.getMembersByGroupId(g.getId()).size()+" contact(s)</option>");
+						out.write("<input type='checkbox' name='idsToDelete' value='"+g.getId()+"'> "+g.getNom()+" - "+ms.getMembersByGroupId(g.getId()).size()+" contact(s)</input><br>");
 			%>
-			</select><br>
-			</div>
+<!-- 			</select><br> -->
+			</div><br>		
 			<html:errors/><br>
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>
 	</form>
@@ -47,7 +46,6 @@ $(function()
 		else if(value!=-1)
 			$("#deleteBtn").attr("disabled",false);
 	});
-
 });
 </script>
 </html>

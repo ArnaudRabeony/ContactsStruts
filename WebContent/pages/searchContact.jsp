@@ -1,6 +1,9 @@
+<%@page import="ServiceEntities.AdresseService"%>
+<%@page import="Models.Adresse"%>
 <%@page import="Models.Contact"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -16,8 +19,10 @@
 	<% 
 		ContactService cs = new ContactService();
 		ArrayList<Contact> contacts = cs.getContacts();
-		Boolean empty = contacts.isEmpty();
-	%>	
+		AdresseService as = new AdresseService();
+		ArrayList<Adresse> adresses = as.getAdresses();
+		String selectedId = request.getParameter("selectedId")!=null ? request.getParameter("selectedId") : "";
+	%>		
 	<h3><bean:message key="search.contact.title"/></h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchContact.do">
 			<div class="form-group form-group-sm">
@@ -63,10 +68,31 @@
     <!--/.Card-->
 		</div>
 	</div>
+	<%
+   	if(selectedId!="")
+      	{   
+      %>
 	
 	<div id="editableFormCard" class="row">
 	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateContact.do">
-		<input class="inputPadding form-control" type="number" name="idContact" id="idContact" value="${idResult}" placeholder="ID..."><br>	
+		<label for="selectedId" ><bean:message key="associated.address"/></label><br>
+		<select class="form-control col-md-3 col-md-3" name="newAddress" id="newAddress">
+			<option value="-1"><bean:message key="address.placeholder"/></option>
+		<%
+			int idAddress = Integer.valueOf(request.getParameter("selectedId"));
+			
+			Contact c = null;
+			if(idAddress!=0)
+				c = cs.getContactById(Integer.valueOf(request.getParameter("selectedId")));
+		
+			for(Adresse a : adresses)
+				if(c!=null && a.getIdAddress()==c.getIdAdresse())
+					out.write("<option value='"+a.getIdAddress()+"' selected>"+a.getRue()+", "+a.getCodePostal()+"</option>");
+				else
+					out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
+		%>
+		</select><br>
+		<input class="inputPadding form-control" type="hidden" name="idContact" id="idContact" value="${idResult}" placeholder="ID..."><br>	
 		<input class="inputPadding form-control" type="text" name="nom" id="nom" value="${nomResult}" placeholder="Nouveau nom..."><br>
 		<input class="inputPadding form-control" type="text" name="prenom" id="prenom" value="${prenomResult}" placeholder="Nouveau prénom..."><br>
 		<input class="inputPadding form-control" type="text" name="email" id="email" value="${emailResult}" placeholder="Nouvelle adresse mail..."><br>
@@ -74,6 +100,7 @@
 		<button class="btn btn-primary" type="submit"><bean:message key="update"/></button>
 	</form>
 	</div>
+	<% } %>
 <jsp:include page="footer.jsp" />
 <script>
 $(function()

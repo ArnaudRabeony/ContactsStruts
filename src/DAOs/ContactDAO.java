@@ -146,6 +146,45 @@ public class ContactDAO {
 		}
 	}
 	
+	public void updateContact(int idContact, String nom,String prenom,String email, int idAdresse)
+	{
+		System.out.println("MAJ du compte : "+idContact+"\n"+nom+" "+prenom+"\n"+email);
+		
+		try
+		{
+		con = this.getConnection();
+		String req = "update contact set nom=?,prenom=?,email=?,idAdresse=? where idContact=?";
+
+		ps = con.prepareStatement(req);
+		ps.setString(1, nom);
+		ps.setString(2, prenom);
+		ps.setString(3, email);
+		ps.setInt(4, idAdresse);
+		ps.setInt(5, idContact);
+		
+		System.out.println(ps);
+		ps.execute();
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public Contact searchContact(int idContact)
 	{
 		System.out.println("Recherche du compte : "+idContact);
@@ -333,7 +372,7 @@ public class ContactDAO {
 			
 			if(rs.next())
 			{
-				c = new Contact(rs.getString("nom"), rs.getString("prenom"), rs.getString("email"));
+				c = new Contact(rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getInt("idAdresse"));
 				c.setId(rs.getInt("idContact"));
 			}
 		}

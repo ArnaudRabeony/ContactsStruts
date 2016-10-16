@@ -1,6 +1,7 @@
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Models.Adresse"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>

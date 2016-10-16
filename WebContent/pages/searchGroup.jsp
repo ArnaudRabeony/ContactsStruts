@@ -4,6 +4,7 @@
 <%@page import="Models.Contact"%>
 <%@page import="ServiceEntities.GroupeService"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>

@@ -41,9 +41,9 @@ public class UpdatePhoneAction extends Action
 				return mapping.findForward("success");
 			}
 			else
-				return mapping.findForward("alreadyExistsError");
+				return mapping.findForward("error");
 		}
 		else
-			return mapping.findForward("doesNotExistsError");
+			return mapping.findForward("error");
 	}		
 }

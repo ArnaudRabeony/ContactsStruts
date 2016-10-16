@@ -3,6 +3,7 @@
 <%@page import="ServiceEntities.TelephoneService"%>
 <%@page import="Models.Telephone"%>
 <%@page import="Models.Contact"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
@@ -31,9 +32,9 @@
 					Contact c = cs.getContactById(t.getIdContact());
 					
 					if(c!=null)
-						out.write("<input type='checkbox' name='selectedId' value='"+t.getId()+"'> "+c.getPrenom()+" "+c.getNom()+" ("+t.getPhoneKind()+") : "+t.getNumber()+"</input><br>");
+						out.write("<input type='checkbox' name='idsToDelete' value='"+t.getId()+"'> "+c.getPrenom()+" "+c.getNom()+" ("+t.getPhoneKind()+") : "+t.getNumber()+"</input><br>");
 					else
-						out.write("<input type='checkbox' name='selectedId' value='"+t.getId()+"'> "+t.getPhoneKind()+" : "+t.getNumber()+"</input><br>");
+						out.write("<input type='checkbox' name='idsToDelete' value='"+t.getId()+"'> "+t.getPhoneKind()+" : "+t.getNumber()+"</input><br>");
 				}
 			%>
 <!-- 			</select><br> -->
@@ -42,18 +43,4 @@
 			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>
 	</form>
 <jsp:include page="footer.jsp"/>
-<script>
-$(function()
-{
-	$("body").on("change","input:checkbox",function()
-	{
-		var value =$("input:checkbox:checked").length;
-		if(value==0)
-			$("#deleteBtn").attr("disabled",true);
-		else if(value>0)
-			$("#deleteBtn").attr("disabled",false);
-	});
-
-});
-</script>
 </html>

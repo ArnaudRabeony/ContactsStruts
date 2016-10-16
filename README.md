@@ -1,8 +1,6 @@
 # ContactsStruts
 
 ## TODO
-* Modifier adresse d'un contact : liste déroulante adresses (update contact)
-* Supprimer contact (checkboxes)
 * Session
 * Afficher erreurs formulaires
 * Supprimer doublons link css (header)
@@ -19,6 +17,9 @@
 * messages français
 * messages anglais
 * Changer BD : Contact->Adresse (assoc unidirectionnelle)
+* Modifier adresse d'un contact : liste déroulante adresses (update contact)
+* Suppression via checkboxes
+
 
 
 

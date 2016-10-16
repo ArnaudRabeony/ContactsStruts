@@ -8,17 +8,21 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import ActionForms.DeletePhoneActionForm;
+import ActionForms.DeleteListActionForm;
 import ServiceEntities.TelephoneService;
 
 public class DeletePhoneAction extends Action
 {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		DeletePhoneActionForm f = (DeletePhoneActionForm)form;
+		DeleteListActionForm f = (DeleteListActionForm)form;
 		
+		int[] toDelete = f.getIdsToDelete();
+
 		TelephoneService ts = new TelephoneService();
-		ts.deleteTelephone(f.getSelectedId());
+		
+		for(int i=0;i<toDelete.length;i++)
+			ts.deleteTelephone(toDelete[i]);
 		
 		return mapping.findForward("success");
 	}

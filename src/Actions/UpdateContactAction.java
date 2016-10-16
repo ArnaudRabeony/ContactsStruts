@@ -26,6 +26,7 @@ public class UpdateContactAction extends Action
 		String prenom = f.getPrenom();
 		String email = f.getEmail();
 		int idContact = f.getIdContact();
+		int idAdresse = f.getNewAddress();
 		
 		ContactService cs = new ContactService();
 		if(cs.contactExists(idContact))
@@ -35,16 +36,23 @@ public class UpdateContactAction extends Action
 			
 			boolean contactHasChanged = !c.getNom().equals(nom) || !c.getPrenom().equals(prenom) || (!c.getEmail().equals(email));
 			System.out.println("contact a changé : "+contactHasChanged);
+			boolean addressHasChanged = c.getIdAdresse()!=idAdresse;
+			System.out.println("adresse a changé : "+addressHasChanged);
 
-			if(contactHasChanged && !cs.contactExists(nom, prenom))// || !addressHasChanged)
+			if(addressHasChanged && !contactHasChanged || (contactHasChanged && !cs.contactExists(nom, prenom)))
+			{
+				cs.updateContact(idContact, nom, prenom, email,idAdresse);
+				return mapping.findForward("success");
+			}
+			else if(contactHasChanged && !cs.contactExists(nom, prenom))// || !addressHasChanged)
 			{
 				cs.updateContact(idContact, nom, prenom, email);
 				return mapping.findForward("success");
 			}
 			else
-				return mapping.findForward("alreadyExistsError");
+				return mapping.findForward("error");
 		}
 		else
-			return mapping.findForward("doesNotExistsError");
+			return mapping.findForward("error");
 	}	
 }

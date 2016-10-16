@@ -25,6 +25,11 @@ public class ContactService {
 		cd.updateContact(idContact,nom,prenom,email);
 	}
 	
+	public void updateContact(int idContact, String nom,String prenom,String email, int idAdresse)
+	{
+		cd.updateContact(idContact,nom,prenom,email,idAdresse);
+	}
+	
 	public Contact searchContact(int idContact)
 	{
 		return cd.searchContact(idContact);

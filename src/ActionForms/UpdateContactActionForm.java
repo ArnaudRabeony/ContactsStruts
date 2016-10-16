@@ -17,7 +17,16 @@ public class UpdateContactActionForm extends ActionForm
 	private String nom;
 	private String prenom;
 	private String email;
+	private int newAddress;
 	
+	public int getNewAddress() {
+		return newAddress;
+	}
+
+	public void setNewAddress(int newAddress) {
+		this.newAddress = newAddress;
+	}
+
 	public int getIdContact() {
 		return idContact;
 	}
