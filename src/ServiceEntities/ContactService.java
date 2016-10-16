@@ -14,6 +14,11 @@ public class ContactService {
 	{
 		return cd.createContact(nom,prenom,email);
 	}
+	
+	public Contact createContactWithAddress(String nom,String prenom,String email, int idAdresse)
+	{
+		return cd.createContactWithAddress(nom,prenom,email,idAdresse);
+	}
 
 	public void updateContact(int idContact, String nom,String prenom,String email)
 	{
@@ -57,19 +62,14 @@ public class ContactService {
 		return cd.getIdByContact(contact);
 	}
 	
-	public Groupe getGroupByContactId(int idContact)
+	public boolean setAddress(int idContact, int idAdresse)
 	{
-		return cd.getGroupByContactId(idContact);
+		return cd.setAddress(idContact, idAdresse);
 	}
 	
-	public ArrayList<Contact> getNoGroupContacts()
+	public int getIdAdresseByContactId(int idContact)
 	{
-		return cd.getNoGroupContacts();
-	}
-	
-	public boolean addContactToGroup(int idContact, int idGroupe)
-	{
-		return cd.addContactToGroup(idContact, idGroupe);
+		return cd.getIdAdresseByContactId(idContact);
 	}
 	
 	public boolean listContainsContact(ArrayList<Contact> list, int idContact)

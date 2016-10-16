@@ -1,3 +1,4 @@
+<%@page import="ServiceEntities.MembreService"%>
 <%@page import="ServiceEntities.ContactService"%>
 <%@page import="Models.Groupe"%>
 <%@page import="Models.Contact"%>
@@ -15,9 +16,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
 <jsp:include page="header.jsp" />
-	<% 
+	<%
 		GroupeService gs = new GroupeService();
-		ArrayList<Groupe> groupes = gs.getGroups();
+			MembreService ms = new MembreService();
+			ArrayList<Groupe> groupes = gs.getGroups();
 	%>	
 	<h3><bean:message key="search.group.title"/></h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchGroup.do">
@@ -27,7 +29,7 @@
 				<option value="-1"><bean:message key="group.placeholder"/></option>
 			<%
 				for(Groupe g : groupes)
-					out.write("<option value='"+g.getId()+"'>"+g.getNom()+"</option>");
+					out.write("<option value='"+g.getId()+"'>"+g.getNom()+" - "+ms.getMembersByGroupId(g.getId()).size()+" contact(s)</option>");
 			%>
 			</select><br>
 			</div><br>
@@ -47,7 +49,7 @@
 		<%
 				ContactService cs = new ContactService();
 				ArrayList<Contact> allContacts = cs.getContacts();
-				ArrayList<Contact> contacts = gs.getContacts(Integer.valueOf(request.getParameter("selectedId")));
+				ArrayList<Contact> contacts = ms.getMembersByGroupId(Integer.valueOf(request.getParameter("selectedId")));
 				
 				for(Contact c : allContacts)
 				{

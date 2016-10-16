@@ -14,6 +14,7 @@ import ActionForms.DeleteGroupActionForm;
 import Models.Contact;
 import ServiceEntities.ContactService;
 import ServiceEntities.GroupeService;
+import ServiceEntities.MembreService;
 
 public class DeleteGroupAction extends Action
 {
@@ -22,13 +23,14 @@ public class DeleteGroupAction extends Action
 		DeleteGroupActionForm f = (DeleteGroupActionForm)form;
 		
 		GroupeService gs = new GroupeService();
-		ArrayList<Contact> members = gs.getContacts(f.getSelectedId());
+		MembreService ms = new MembreService();
+		ArrayList<Contact> members = ms.getMembersByGroupId(f.getSelectedId());
 		gs.deleteGroup(f.getSelectedId());
 		
 		ContactService cs = new ContactService();
 		
 		for(Contact c : members)
-			cs.addContactToGroup(c.getId(), 0);
+			ms.removeContactFromGroup(c.getId(), f.getSelectedId());
 		
 		return mapping.findForward("success");
 	}

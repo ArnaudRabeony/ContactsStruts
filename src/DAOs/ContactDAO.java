@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Models.Adresse;
 import Models.Contact;
 import Models.Groupe;
 import ServiceEntities.GroupeService;
@@ -44,6 +45,47 @@ public class ContactDAO {
 		
 		ps.execute();
 		c = new Contact(nom, prenom, email);
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return c;	
+	}
+	
+	public Contact createContactWithAddress(String nom,String prenom,String email, int idAddress)
+	{
+		System.out.println("Creation du contact with address "+idAddress+" : "+nom+" | "+prenom+" | "+email);
+		Contact c = null;
+
+		try
+		{		
+		con = this.getConnection();
+
+		String req = "insert into contact(nom,prenom,email,idAdresse) values(?,?,?,?)";
+
+		ps = con.prepareStatement(req);
+		ps.setString(1, nom);
+		ps.setString(2, prenom);
+		ps.setString(3, email);
+		ps.setInt(4, idAddress);
+		
+		ps.execute();
+		c = new Contact(nom, prenom, email, idAddress);
 		}
 		catch(SQLException e)
 		{
@@ -168,9 +210,9 @@ public class ContactDAO {
 				String nom = rs.getString("nom");
 				String prenom = rs.getString("prenom");
 				String email = rs.getString("email");
-				int idGroupe = rs.getInt("idGroupe");
+				int idAdresse = rs.getInt("idAdresse");
 				
-				list.add(new Contact(id, nom, prenom, email,idGroupe));
+				list.add(new Contact(id, nom, prenom, email,idAdresse));
 			}
 		}
 		catch(SQLException e)
@@ -389,7 +431,6 @@ public class ContactDAO {
 		return changes>0;
 	}
 
-	
 	public int getIdByContact(Contact contact) {
 
 		int idContact = 0;
@@ -431,74 +472,58 @@ public class ContactDAO {
 		return idContact;
 	}
 
-	public ArrayList<Contact> getNoGroupContacts()
+	public boolean setAddress(int idContact, int idAdresse)
 	{
-		ArrayList<Contact> list = new ArrayList<Contact>();
-		for(Contact c : this.getContacts())
-		{	
-			System.out.println(c.getNom()+" : "+c.getIdGroupe());
-			if(c.getIdGroupe()==0)
-				list.add(c);
-			
+		System.out.println("MAJ adresse du compte : "+idContact);
+		int changes = 0;
+		try
+		{
+		con = this.getConnection();
+		String req = "update contact set idAdresse=? where idContact=?";
+
+		ps = con.prepareStatement(req);
+		ps.setInt(1, idAdresse);
+		ps.setInt(2, idContact);
+		
+		System.out.println(ps);
+		changes = ps.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
-		return list;
+		return changes>0;
 	}
-	
-	public Groupe getGroupByContactId(int idContact) {
-		
-		Groupe g = null;
+
+	public int getIdAdresseByContactId(int idContact)
+	{
+		int id = 0;
 		try
 		{
 			con = this.getConnection();
-			String req = "select idGroupe from contact where idContact=?";
+			String req = "select idAdresse from contact where idContact=?";
+	
 			ps = con.prepareStatement(req);
 			ps.setInt(1, idContact);
-			ResultSet rs = ps.executeQuery() ;
-			System.out.println(ps);
-			if(rs.next())
-			{
-				GroupeService gs = new GroupeService();
-				int idGroupe = rs.getInt("idGroupe");
-				g=new Groupe(idGroupe, gs.getGroupNameById(idGroupe));
-			}
-		}
-		catch(SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		finally
-		{
-			try {
-				if(ps != null) ps.close();
-				if(con != null) con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}	
-		
-		return g;
-	}
-
-	public boolean addContactToGroup(int idContact, int idGroupe) 
-	{
-		int changes = 0;
-		
-		try
-		{
-			con = this.getConnection();
-			String req = "update contact set idGroupe=? where idContact=?";
-			ps = con.prepareStatement(req);
-			ps.setInt(1, idGroupe);
-			ps.setInt(2, idContact);
 			
-			System.out.println(ps);
-			changes = ps.executeUpdate();
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())		
+				id = rs.getInt("idAdresse");
 		}
 		catch(SQLException e)
 		{
@@ -519,6 +544,6 @@ public class ContactDAO {
 			}
 		}	
 
-		return changes>0;
+		return id;
 	}
 }

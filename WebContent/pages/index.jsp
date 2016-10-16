@@ -1,4 +1,5 @@
 
+<%@page import="ServiceEntities.MembreService"%>
 <%@page import="Models.Adresse"%>
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="Models.Telephone"%>
@@ -23,9 +24,9 @@
 <jsp:include page="header.jsp" />
 <%
 	ContactService cs = new ContactService();
+	MembreService ms = new MembreService();
 	ArrayList<Contact> contacts = cs.getContacts();
-	Boolean empty = contacts.isEmpty();
-	
+
 	GroupeService gs = new GroupeService();
 	ArrayList<Groupe> groupes = gs.getGroups();
 
@@ -46,7 +47,7 @@
 	 <%
 		for(Groupe g : groupes)
 		{
-			ArrayList<Contact> members = gs.getContacts(g.getId());
+			ArrayList<Contact> members = ms.getMembersByGroupId(g.getId());
 			%>
 	
 			    <div class="panel panel-default">
@@ -73,7 +74,7 @@
 			    </div>
 	<%	}
 	 
-	 	ArrayList<Contact> noGroup = cs.getNoGroupContacts();
+	 	ArrayList<Contact> noGroup = ms.getContactsWithoutGroup();
 	 	if(!noGroup.isEmpty())
 	 	{
 	 		
@@ -102,23 +103,22 @@
 			  </div>
 		</div>
    <%
-    if(selectedId!="")
-   	{   
-    	Contact c = cs.getContactById(Integer.valueOf(selectedId));
-    	Groupe groupe = cs.getGroupByContactId(Integer.valueOf(selectedId));
-    	String groupName = groupe.getNom();
-    	
-    	TelephoneService ts = new TelephoneService();
-    	ArrayList<Telephone> toDisplayTelephones = ts.getTelephonesByContactId(c.getId());
-    	
-    	String telToDisplay ="";
-    	
-    	if(!toDisplayTelephones.isEmpty())
-    	{
-   			for(Telephone t : toDisplayTelephones)
-	    		telToDisplay=t.getPhoneKind()+" : "+t.getNumber();
-    	}
-    	
+   	if(selectedId!="")
+      	{   
+       	Contact c = cs.getContactById(Integer.valueOf(selectedId));
+//        	ArrayList<Integer> idsGroupe = ms.getGroupIdByContactId(Integer.valueOf(selectedId));
+       	
+//        	Groupe groupe = gs.getGroupById(idGroupe);
+//    		String groupName = groupe.getNom();
+
+   		TelephoneService ts = new TelephoneService();
+   		ArrayList<Telephone> telephonesList = ts.getTelephonesByContactId(c.getId());
+
+   		String telToDisplay = "";
+
+   		if (!telephonesList.isEmpty())
+   			telToDisplay = telephonesList.get(0).getPhoneKind() + " : "
+   					+ telephonesList.get(0).getNumber();
    %>
 	<div id="contactInfo" class="row col-md-8 col-sm-8">
 		<div id="cardContainer" class="col-md-5 col-sm-5">
@@ -136,7 +136,7 @@
 		        <!--/.Card image-->
 		        <!--Card content-->
 		        <div class="card-block" style="padding:10px;">
-		            <h5 class="red-text" id="groupeLabel"><%= groupName %></h5>
+<%-- 		            <h5 class="red-text" id="groupeLabel"><%= groupName %></h5> --%>
 		            <!--Title-->
 		            <h4 class="card-title" id="cardContactName"><%= c.getPrenom()%> <%= c.getNom()%></h4>
 		            <!--Text-->
@@ -154,17 +154,18 @@
 	    	<div id="addressList" class="list-group">
 	    	<%
 	    		AdresseService as = new AdresseService();
-	    		ArrayList<Adresse> adresses = as.getAdressesByContactId(c.getId());
-	    		
-	    		for(Adresse a : adresses)
-	    			out.write("<li class='list-group-item'>"+a.getRue()+", "+a.getCodePostal()+"</li>");
+	    		int idAdresse = cs.getIdAdresseByContactId(Integer.valueOf(selectedId));
+	    		if(idAdresse!=0)
+	    		{
+		    		Adresse a = as.getAdresseById(idAdresse);
+		    		out.write("<li class='list-group-item'>"+a.getRue()+", "+a.getCodePostal()+"</li>");
+	    		}
 	    	%>
 			</div>
 <!--     		    	<h3 style="display:none"><small>Téléphone(s)</small></h3> -->
 			<div id="telephonesList" class="list-group">
 			<%
 	    		ArrayList<Telephone> telephones = ts.getTelephonesByContactId(c.getId());
-	    		
 	    		for(Telephone t : telephones)
 	    			out.write("<li class='list-group-item'>"+t.getPhoneKind()+" : "+t.getNumber()+"</li>");
 	    	%>			

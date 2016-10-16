@@ -25,6 +25,7 @@
 		<form-bean name="UpdateAddressActionForm" type="ActionForms.UpdateAddressActionForm"/>
 		<form-bean name="UpdatePhoneActionForm" type="ActionForms.UpdatePhoneActionForm"/>
 		<form-bean name="UpdateGroupActionForm" type="ActionForms.UpdateGroupActionForm"/>
+		<form-bean name="UpdateContactActionForm" type="ActionForms.UpdateContactActionForm"/>
 		
 	</form-beans>
 	<action-mappings>
@@ -66,19 +67,19 @@
 		
 		<action path="/Create" type="Actions.CreateContactAction"
 			name="CreateContactActionForm" scope="request" input="/pages/createContact.jsp">
-			<forward name="success" path="/pages/index.jsp" />
+			<forward name="success" path="/pages/create.jsp" />
 		</action>
 		<action path="/CreateAddress" type="Actions.CreateAddressAction"
 			name="CreateAddressActionForm" scope="request" input="/pages/createAddress.jsp">
-			<forward name="success" path="/pages/index.jsp" />
+			<forward name="success" path="/pages/create.jsp" />
 		</action>
 		<action path="/CreatePhone" type="Actions.CreatePhoneAction"
 			name="CreatePhoneActionForm" scope="request" input="/pages/createPhoneNumber.jsp">
-			<forward name="success" path="/pages/index.jsp" />
+			<forward name="success" path="/pages/create.jsp" />
 		</action>
 		<action path="/CreateGroup" type="Actions.CreateGroupAction"
 			name="CreateGroupActionForm" scope="request" input="/pages/createGroup.jsp">
-			<forward name="success" path="/pages/index.jsp" />
+			<forward name="success" path="/pages/create.jsp" />
 		</action>
 		
 		<action path="/DeleteAddress" type="Actions.DeleteAddressAction"
@@ -131,6 +132,11 @@
 		</action>
 		<action path="/UpdateGroup" type="Actions.UpdateGroupAction"
 			name="UpdateGroupActionForm" scope="request" input="/pages/searchGroup.jsp">
+			<forward name="success" path="/pages/update.jsp" />
+			<forward name="error" path="/pages/error.jsp" />
+		</action>
+		<action path="/UpdateContact" type="Actions.UpdateContactAction"
+			name="UpdateContactActionForm" scope="request" input="/pages/searchContact.jsp">
 			<forward name="success" path="/pages/update.jsp" />
 			<forward name="error" path="/pages/error.jsp" />
 		</action>

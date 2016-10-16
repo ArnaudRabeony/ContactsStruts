@@ -27,15 +27,7 @@
 				<option value="-1"><bean:message key="address.placeholder"/></option>
 			<%
 				for(Adresse a : adresses)
-				{
-					ContactService cs = new ContactService();
-					Contact c = cs.getContactById(a.getIdContact());
-					out.write(a.getIdAddress());
-					if(c!=null)
-						out.write("<option value='"+a.getIdAddress()+"'>"+c.getPrenom()+" "+c.getNom()+" : "+a.getRue()+", "+a.getCodePostal()+"</option>");
-					else
-						out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
-				}		
+					out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
 			%>
 			</select><br>
 			</div>

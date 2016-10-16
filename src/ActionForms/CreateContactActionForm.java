@@ -21,11 +21,7 @@ public class CreateContactActionForm extends ActionForm
 	private String prenom;
 	private String email;
 	
-	private String numeroAdresse;
-	private String rue;
-	private String ville;
-	private String codep;
-	private String pays;
+	private int selectedId;
 	
 	private String numeroTel;
 	private String type;
@@ -48,35 +44,12 @@ public class CreateContactActionForm extends ActionForm
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getNumeroAdresse() {
-		return numeroAdresse;
+
+	public int getSelectedId() {
+		return selectedId;
 	}
-	public void setNumeroAdresse(String numeroAdresse) {
-		this.numeroAdresse = numeroAdresse;
-	}
-	public String getRue() {
-		return rue;
-	}
-	public void setRue(String rue) {
-		this.rue = rue;
-	}
-	public String getVille() {
-		return ville;
-	}
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-	public String getCodep() {
-		return codep;
-	}
-	public void setCodep(String codep) {
-		this.codep = codep;
-	}
-	public String getPays() {
-		return pays;
-	}
-	public void setPays(String pays) {
-		this.pays = pays;
+	public void setSelectedId(int selectedId) {
+		this.selectedId = selectedId;
 	}
 	public String getNumeroTel() {
 		return numeroTel;
@@ -98,11 +71,12 @@ public class CreateContactActionForm extends ActionForm
 		boolean nomIsNullOrEmpty = this.getNom() == null || this.getNom().isEmpty();
 		boolean prenomIsNullOrEmpty = this.getPrenom() == null || this.getPrenom().isEmpty();
 		boolean emailIsNullOrEmpty = this.getEmail() == null || this.getEmail().isEmpty();
+//		boolean idAddressIsNullOrEmpty = this.getSelectedId() == -1;
 		
 		if (nomIsNullOrEmpty || prenomIsNullOrEmpty || emailIsNullOrEmpty) 
 			errors.add("mainField", new ActionMessage("form.missingField"));
-		else if (nomIsNullOrEmpty && prenomIsNullOrEmpty) 
-			errors.add("nomAndPassword", new ActionMessage("form.missingField"));
+//		else if (idAddressIsNullOrEmpty) 
+//			errors.add("address", new ActionMessage("form.missingField"));
 		else
 		{
 			String nom = this.getNom();

@@ -1,3 +1,4 @@
+<%@page import="ServiceEntities.MembreService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.GroupeService"%>
 <%@page import="Models.Groupe"%>
@@ -14,10 +15,11 @@
 <body>
 <jsp:include page="header.jsp"/>
 	
-	<% 
-		GroupeService gs = new GroupeService();
-		ArrayList<Groupe> groupes = gs.getGroups();
-	%>	
+	<%
+			GroupeService gs = new GroupeService();
+				MembreService ms = new MembreService();
+				ArrayList<Groupe> groupes = gs.getGroups();
+		%>	
 	<h3><bean:message key="delete.group.title"/></h3> <br>
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteGroup.do">
 			<div class="form-group form-group-sm">			
@@ -26,7 +28,7 @@
 				<option value="-1"><bean:message key="group.placeholder"/></option>
 			<%
 				for(Groupe g : groupes)
-					out.write("<option value='"+g.getId()+"'>"+g.getNom()+" - "+gs.getContacts(g.getId()).size()+" contact(s)</option>");
+					out.write("<option value='"+g.getId()+"'>"+g.getNom()+" - "+ms.getMembersByGroupId(g.getId()).size()+" contact(s)</option>");
 			%>
 			</select><br>
 			</div>

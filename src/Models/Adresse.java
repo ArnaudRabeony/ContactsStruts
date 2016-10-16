@@ -7,7 +7,6 @@ public class Adresse {
 	private String ville;
 	private String codePostal;
 	private String pays;
-	private int idContact;
 	
 	public Adresse(String rue, String ville, String codePostal, String pays) {
 		super();
@@ -27,24 +26,6 @@ public class Adresse {
 		this.pays = pays;
 	}
 	
-	public Adresse(int id, String rue, String ville, String codePostal,
-			String pays, int idContact) {
-		super();
-		this.idAddress = id;
-		this.rue = rue;
-		this.ville = ville;
-		this.codePostal = codePostal;
-		this.pays = pays;
-		this.idContact = idContact;
-	}
-	
-	public int getIdContact() {
-		return idContact;
-	}
-
-	public void setIdContact(int idContact) {
-		this.idContact = idContact;
-	}
 	public int getIdAddress() {
 		return idAddress;
 	}

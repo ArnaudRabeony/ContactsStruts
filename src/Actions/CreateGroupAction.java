@@ -12,6 +12,7 @@ import ActionForms.CreateGroupActionForm;
 import Models.Groupe;
 import ServiceEntities.ContactService;
 import ServiceEntities.GroupeService;
+import ServiceEntities.MembreService;
 
 public class CreateGroupAction extends Action
 {
@@ -20,6 +21,7 @@ public class CreateGroupAction extends Action
 		CreateGroupActionForm f = (CreateGroupActionForm) form;
 		
 		GroupeService gs = new GroupeService();
+		MembreService ms = new MembreService();
 		Groupe g = gs.createGroupe(f.getNomGroupe());
 		String[] addToGroup = f.getAddToGroup();
 		
@@ -29,7 +31,7 @@ public class CreateGroupAction extends Action
 			int idGroupe = gs.getGroupIdByName(g.getNom());
 			
 			for(int i=0;i<addToGroup.length;i++)
-				cs.addContactToGroup(Integer.valueOf(addToGroup[i]), idGroupe);
+				ms.addContactToGroup(Integer.valueOf(addToGroup[i]), idGroupe);
 		}
 		
 		return mapping.findForward("success");

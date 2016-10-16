@@ -11,8 +11,7 @@ public class Contact {
 	
 	private ArrayList<Telephone> profiles;
 	private ArrayList<Groupe> groupesListe;
-	private Adresse adresse;
-	private int idGroupe;
+	private int idAdresse;
 	
 	public Contact(int id, String nom, String prenom, String email) {
 		super();
@@ -30,23 +29,31 @@ public class Contact {
 		this.email = email;
 	}
 	
+	public Contact(String nom, String prenom, String email, int idAdresse)
+	{
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.idAdresse = idAdresse;
+	}
 
-	public Contact(int id, String nom, String prenom, String email, int idGroupe)
+	public Contact(int id, String nom, String prenom, String email, int idAdresse)
 	{
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.idGroupe = idGroupe;
+		this.idAdresse = idAdresse;
 	}
 
-	public int getIdGroupe() {
-		return idGroupe;
+	public int getIdAdresse() {
+		return idAdresse;
 	}
 
-	public void setIdGroupe(int idGroupe) {
-		this.idGroupe = idGroupe;
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
 	}
 
 	public int getId() {
@@ -97,14 +104,6 @@ public class Contact {
 		this.groupesListe = groupesListe;
 	}
 
-	public Adresse getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
-	}
-	
 	public void addTelephone(Telephone t)
 	{
 		this.profiles.add(t);
@@ -113,9 +112,5 @@ public class Contact {
 	public void addGroupe(Groupe g)
 	{
 		this.groupesListe.add(g);
-	}
-
-	public void removeTelephone(String numero) {
-		this.profiles.remove(numero);
 	}
 }

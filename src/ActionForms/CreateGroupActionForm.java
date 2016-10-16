@@ -53,7 +53,7 @@ public class CreateGroupActionForm extends ActionForm
 		{
 			GroupeService gs = new GroupeService();
 			
-			if(gs.exists(this.getNomGroupe()))
+			if(gs.groupExists(this.getNomGroupe()))
 				errors.add("alreadyExists", new ActionMessage("form.group.alreadyExists"));
 		}
 		return errors;

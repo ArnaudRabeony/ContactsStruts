@@ -10,11 +10,6 @@ public class GroupeService {
 
 	GroupeDAO gd = new GroupeDAO();
 	
-	public Groupe createGroupe(String nom, Contact contact)
-	{
-		return gd.createGroupe(nom, contact);
-	}
-	
 	public Groupe createGroupe(String nom)
 	{
 		return gd.createGroupe(nom);
@@ -28,16 +23,6 @@ public class GroupeService {
 	public boolean updateGroupe(int idGroupe, String newNom)
 	{
 		return gd.updateGroupe(idGroupe, newNom);
-	}
-	
-	public ArrayList<Contact> getContacts(int groupId)
-	{
-		return gd.getContacts(groupId);
-	}
-	
-	public boolean exists(String nom)
-	{
-		return gd.exists(nom);
 	}
 	
 	public ArrayList<Groupe> getGroups()

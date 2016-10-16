@@ -1,15 +1,15 @@
 # ContactsStruts
 
 ## TODO
-* Changer BD : Contact->Adresse (assoc unidirectionnelle donc idAddress dans Contact)
+* Modifier adresse d'un contact : liste déroulante adresses (update contact)
+* Supprimer contact (checkboxes)
 * Session
 * Afficher erreurs formulaires
 * Supprimer doublons link css (header)
 * jstl
 
 ### PRB
-* Création contact : validation des champs optionnels (Adresse + Telephone)
-* Validation creation groupe
+* Création contact : validation des champs optionnels (Telephone)
 
 ## DONE 
 * Création
@@ -18,6 +18,8 @@
 * Affichage index + cartes
 * messages français
 * messages anglais
+* Changer BD : Contact->Adresse (assoc unidirectionnelle)
+
 
 
 

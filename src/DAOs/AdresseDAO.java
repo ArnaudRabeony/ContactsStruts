@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Models.Adresse;
+import ServiceEntities.ContactService;
 
 public class AdresseDAO 
 {
@@ -24,27 +25,28 @@ public class AdresseDAO
 		return GlobalConnexion.getConnection();
 	}
 	
-	public Adresse createAdresse(String rue, String ville, String codePostal, String pays, int idContact)
+	public Adresse createAdresse(String rue, String ville, String codePostal, String pays)
 	{
 		Adresse a = null;
 		
-		System.out.println("Creation adresse de contact"+idContact+": "+rue+" | "+ville+" | "+codePostal+" | "+pays);
+		System.out.println("Creation adresse pour : "+rue+" | "+ville+" | "+codePostal+" | "+pays);
 		
 		try
 		{		
 		con = this.getConnection();
 
-		String req = "insert into adresse(rue,ville,codePostal,pays,idContact) values(?,?,?,?,?)";
+		String req = "insert into adresse(rue,ville,codePostal,pays) values(?,?,?,?)";
 
 		ps = con.prepareStatement(req);
 		ps.setString(1, rue);
 		ps.setString(2, ville);
 		ps.setString(3, codePostal);
 		ps.setString(4, pays);
-		ps.setInt(5, idContact);
 		
 		System.out.println(ps);
 		ps.execute();
+		
+		ContactService cs = new ContactService();
 		a = new Adresse(rue, ville, codePostal, pays);
 		
 		}
@@ -68,6 +70,48 @@ public class AdresseDAO
 			}
 		}
 		
+		return a;
+	}
+	
+	public int getAddressId(Adresse adresse)
+	{
+		int a = 0;
+		try
+		{
+			con = this.getConnection();
+			String req = "select idAdresse from adresse where rue=? and ville=? and codePostal=? and pays=?";
+	
+			ps = con.prepareStatement(req);
+			ps.setString(1, adresse.getRue());
+			ps.setString(2, adresse.getVille());
+			ps.setString(3, adresse.getCodePostal());
+			ps.setString(4, adresse.getPays());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			rs.next();
+			
+			a = rs.getInt("idAdresse");
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+
 		return a;
 	}
 	
@@ -187,44 +231,6 @@ public class AdresseDAO
 		return a;
 	}
 	
-	public ArrayList<Adresse> getAdressesByContactId(int idContact)
-	{
-		ArrayList<Adresse> list = new ArrayList<>();
-		try
-		{
-			con = this.getConnection();
-			String req = "select * from adresse where idContact=?";
-	
-			ps = con.prepareStatement(req);
-			ps.setInt(1, idContact);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next())		
-				list.add(new Adresse(rs.getString("rue"), rs.getString("ville"), rs.getString("codePostal"), rs.getString("pays")));
-		}
-		catch(SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		finally
-		{
-			try {
-				if(ps != null) ps.close();
-				if(con != null) con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}	
-
-		return list;
-	}
-
 	public boolean deleteAdressesByContactId(int idContact) 
 	{
 		int changes = 0;
@@ -273,7 +279,7 @@ public class AdresseDAO
 			rs = ps.executeQuery();
 			
 			while(rs.next())
-				list.add(new Adresse(rs.getInt("idAdresse"),rs.getString("rue"),rs.getString("ville"), rs.getString("codePostal"), rs.getString("pays"), rs.getInt("idContact")));
+				list.add(new Adresse(rs.getInt("idAdresse"),rs.getString("rue"),rs.getString("ville"), rs.getString("codePostal"), rs.getString("pays")));
 		}
 		catch(SQLException e)
 		{

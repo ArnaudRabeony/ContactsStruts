@@ -31,22 +31,6 @@
 	<h3><bean:message key="create.address.title"/></h3> <br>
 		<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="CreateAddress.do">
 			<div class="form-group form-group-sm">
-					<label for="contactId" ><bean:message key="associated.contact"/></label>
-					<select class="form-control col-md-3 col-md-3" name="contactId" id="contactId">
-					<%
-						boolean firstContact = true;
-						for(Contact c : contacts)
-						{
-							if(firstContact)
-							{
-								out.write("<option value='"+c.getId()+"' selected>"+c.getPrenom()+" "+c.getNom()+"</option>");
-								firstContact = false;
-							}
-							else
-								out.write("<option value='"+c.getId()+"'>"+c.getPrenom()+" "+c.getNom()+"</option>");
-						}
-					%>
-					</select><br>
 					<input class="form-control form-control-sm inputPadding" type="text" name="numeroAdresse" id="numeroAdresse" value="${errorNumero}" placeholder="<bean:message key="create.address.placeholder.num"/>">
 					<input class="form-control inputPadding" type="text" name="rue" id="rue" value="${errorRue}" placeholder="<bean:message key="create.address.placeholder.street"/>">
 					<input class="form-control inputPadding" type="text" name="ville" id="ville" value="${errorVille}" placeholder="<bean:message key="create.address.placeholder.city"/>">

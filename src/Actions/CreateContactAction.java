@@ -18,8 +18,18 @@ public class CreateContactAction extends Action
 	{ 
 		CreateContactActionForm f = (CreateContactActionForm)form;
 		
+		int idAdresse = f.getSelectedId();
 		ContactService cs = new ContactService();
-		cs.createContact(f.getNom(), f.getPrenom(), f.getEmail());
+		
+		System.out.println("adresse selectionnee : "+idAdresse);
+		
+		if(idAdresse!=0)
+		{
+			if(idAdresse == -1)
+				cs.createContact(f.getNom(), f.getPrenom(), f.getEmail());
+			else
+				cs.createContactWithAddress(f.getNom(), f.getPrenom(), f.getEmail(),idAdresse);
+		}
 		
 		return mapping.findForward("success");
 	}

@@ -65,7 +65,7 @@
 	</div>
 	
 	<div id="editableFormCard" class="row">
-	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="Update">
+	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateContact.do">
 		<input class="inputPadding form-control" type="number" name="idContact" id="idContact" value="${idResult}" placeholder="ID..."><br>	
 		<input class="inputPadding form-control" type="text" name="nom" id="nom" value="${nomResult}" placeholder="Nouveau nom..."><br>
 		<input class="inputPadding form-control" type="text" name="prenom" id="prenom" value="${prenomResult}" placeholder="Nouveau prénom..."><br>

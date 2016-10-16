@@ -15,6 +15,7 @@ import Models.Contact;
 import Models.Groupe;
 import ServiceEntities.ContactService;
 import ServiceEntities.GroupeService;
+import ServiceEntities.MembreService;
 
 public class UpdateGroupAction extends Action
 {
@@ -28,14 +29,15 @@ public class UpdateGroupAction extends Action
 		String[] membersIdList = f.getMembers();
 		
 		GroupeService gs = new GroupeService();
+		MembreService ms = new MembreService();
 		Groupe g = gs.getGroupById(idGroupe);
 		
-		ArrayList<Contact> previousList = gs.getContacts(idGroupe);
+		ArrayList<Contact> previousList = ms.getMembersByGroupId(idGroupe);
 		
 		System.out.println("nom grp : " +f.getNomGroupe());
 		boolean nameHasChanged = !g.getNom().equals(nom);
 		
-		int previousNumber = gs.getContacts(idGroupe).size();
+		int previousNumber = previousList.size();
 		int newNumber = 0;
 		boolean membersNumberHasChanged = false;
 		
@@ -58,14 +60,10 @@ public class UpdateGroupAction extends Action
 		{
 			ContactService cs = new ContactService();
 
-			for(Contact c : cs.getContacts())
-				if(c.getIdGroupe()==idGroupe)
-					cs.addContactToGroup(c.getId(), 0);
-			
 			for(String newContactId : membersIdList)
 			{
 				Contact c = cs.getContactById(Integer.valueOf(newContactId));
-				cs.addContactToGroup(c.getId(), idGroupe);
+				ms.addContactToGroup(c.getId(), idGroupe);
 			}
 		}
 		else
@@ -73,8 +71,8 @@ public class UpdateGroupAction extends Action
 			ContactService cs = new ContactService();
 			
 			for(Contact c : cs.getContacts())
-				if(c.getIdGroupe()==idGroupe)
-					cs.addContactToGroup(c.getId(), 0);
+				if(ms.getGroupIdByContactId(c.getId()).contains(idGroupe))
+					ms.removeContactFromGroup(c.getId(), idGroupe);
 		}
 		
 		return mapping.findForward("success");

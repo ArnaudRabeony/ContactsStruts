@@ -9,9 +9,14 @@ public class AdresseService {
 	
 	AdresseDAO ad = new AdresseDAO();
 
-	public Adresse createAdresse(String rue, String ville, String codePostal, String pays, int idContact)
+	public Adresse createAdresse(String rue, String ville, String codePostal, String pays)
 	{
-		return ad.createAdresse(rue, ville, codePostal, pays,idContact);
+		return ad.createAdresse(rue, ville, codePostal, pays);
+	}
+	
+	public int getAddressId(Adresse a)
+	{
+		return ad.getAddressId(a);
 	}
 	
 	public boolean deleteAdresse(int idAdresse)
@@ -27,11 +32,6 @@ public class AdresseService {
 	public Adresse getAdresseById(int idAdresse)
 	{
 		return ad.getAdresseById(idAdresse);
-	}
-
-	public ArrayList<Adresse> getAdressesByContactId(int idContact)
-	{
-		return ad.getAdressesByContactId(idContact);
 	}
 
 	public boolean deleteAdressesByContactId(int idContact)
