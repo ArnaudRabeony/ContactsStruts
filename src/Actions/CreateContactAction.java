@@ -1,7 +1,10 @@
 package Actions;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -9,6 +12,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import ActionForms.CreateContactActionForm;
+import Models.Adresse;
+import Models.Contact;
+import ServiceEntities.AdresseService;
 import ServiceEntities.ContactService;
 
 public class CreateContactAction extends Action
@@ -30,6 +36,10 @@ public class CreateContactAction extends Action
 			else
 				cs.createContactWithAddress(f.getNom(), f.getPrenom(), f.getEmail(),idAdresse);
 		}
+		
+		HttpSession session = request.getSession();
+		ArrayList<Contact> contacts = cs.getContacts();
+		session.setAttribute("allContacts", contacts);
 		
 		return mapping.findForward("success");
 	}

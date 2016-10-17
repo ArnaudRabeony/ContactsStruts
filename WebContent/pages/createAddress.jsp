@@ -14,21 +14,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<% 
-// if(request.getParameter("selectedId")!=null)
-// 	idAddress = Integer.valueOf(request.getParameter("selectedId"));
-
-// boolean create = idAddress==0;
-// String actionName = create ? "Créer une " : "Modifier une ";
-// String formAction = create ? "CreateAddress" : "UpdateAddress";
-%>
 		<div class="col-md-4 col-sm-4">
-			
-		<% 
-			ContactService cs = new ContactService();
-			ArrayList<Contact> contacts = cs.getContacts();
-			Boolean empty = contacts.isEmpty();
-		%>	
 	<h3><bean:message key="create.address.title"/></h3> <br>
 		<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="CreateAddress.do">
 			<div class="form-group form-group-sm">

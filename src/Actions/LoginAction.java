@@ -12,7 +12,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import ActionForms.LoginValidationForm;
+import Models.Adresse;
+import Models.Contact;
 import Models.Groupe;
+import ServiceEntities.AdresseService;
+import ServiceEntities.ContactService;
 import ServiceEntities.GroupeService;
 
 public class LoginAction extends Action
@@ -21,14 +25,21 @@ public class LoginAction extends Action
 	{
 		LoginValidationForm f = (LoginValidationForm)pForm;
 		
-		 HttpSession session = pRequest.getSession(false);
-		 if(session == null)
-			 session.setAttribute("nom", f.getNom());
+		 HttpSession session = pRequest.getSession();
+		 session.setAttribute("user", f.getNom());
 		
 		 GroupeService gs = new GroupeService();
 		 ArrayList<Groupe> groupes = gs.getGroups();
 		 
-		 pRequest.setAttribute("groupes", groupes);
+		 ContactService cs = new ContactService();
+		 ArrayList<Contact> contacts = cs.getContacts();
+		 session.setAttribute("allContacts", contacts);
+		
+		 AdresseService as = new AdresseService();
+		 ArrayList<Adresse> adresses = as.getAdresses();
+		 session.setAttribute("allAdresses", adresses);
+		 
+		 session.setAttribute("groupes", groupes);
 		 
 		 return pMapping.findForward("success");
 	}

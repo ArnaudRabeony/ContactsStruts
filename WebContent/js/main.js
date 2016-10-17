@@ -53,7 +53,10 @@ $(function()
 				$.get("Switch.do",
 				{
 					lang:lang
-				});
+				}/*,function(response)
+				{
+					$(document).find("html").html(response);
+				}*/);
 			});
 			
 			$("body").on("change","input:checkbox",function()

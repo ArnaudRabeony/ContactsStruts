@@ -2,6 +2,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.GroupeService"%>
 <%@page import="Models.Groupe"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -18,8 +21,8 @@
 	
 	<%
 			GroupeService gs = new GroupeService();
-				MembreService ms = new MembreService();
-				ArrayList<Groupe> groupes = gs.getGroups();
+			MembreService ms = new MembreService();
+			ArrayList<Groupe> groupes = gs.getGroups();
 		%>	
 	<h3><bean:message key="delete.group.title"/></h3> <br>
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteGroup.do">

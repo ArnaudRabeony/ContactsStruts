@@ -3,6 +3,9 @@
 <%@page import="Models.Contact"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -29,10 +32,9 @@
 			<label for="selectedId" ><bean:message key="contact.select"/></label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
 				<option value="-1"><bean:message key="contact.placeholder"/></option>
-			<%
-				for(Contact c : contacts)
-					out.write("<option value='"+c.getId()+"'>"+c.getPrenom()+" "+c.getNom()+"</option>");
-			%>
+					<c:forEach items="${allContacts}" var="c">
+						<option value="${c.id}"> ${c.prenom} ${c.nom}<br>
+					</c:forEach>
 			</select><br>
 			</div><br>
 <!-- 			<button class="btn btn-primary" type="submit">Chercher</button> -->
@@ -59,7 +61,7 @@
 		            <!--Title-->
 		            <h4 class="card-title" id="cardContactName">${prenomResult} ${nomResult}</h4>
 		            <!--Text-->
-		            <p class="card-text">contact.getTelephone()<br>${emailResult}</p>
+		            <p class="card-text"><br>${emailResult}</p>
 		            <a id="editButton" class="btn btn-primary">Éditer</a>
 		        </div>
 		        <!--/.Card content-->

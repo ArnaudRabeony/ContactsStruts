@@ -3,6 +3,9 @@
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -16,20 +19,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
 <jsp:include page="header.jsp" />
-	<% 
-		AdresseService as = new AdresseService();
-		ArrayList<Adresse> adresses = as.getAdresses();
-	%>	
 	<h3><bean:message key="search.address.title"/></h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchAddress.do">
 			<div class="form-group form-group-sm">			
 			<label for="selectedId" ><bean:message key="address.select"/></label><br>
 			<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
 				<option value="-1"><bean:message key="address.placeholder"/></option>
-			<%
-				for(Adresse a : adresses)
-					out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
-			%>
+				<c:forEach items="${allAdresses}" var="a">
+					<option value="${a.idAddress}">${a.rue}, ${a.codePostal}</option>
+				</c:forEach>
 			</select><br>
 			</div>
 			<html:errors/>

@@ -37,4 +37,4 @@
 		<a href="update.do" class="btn btn-success btn-fab-mini"><i class="material-icons">mode_edit</i></a>
 	</div>
 	<div id="rightPanel" class="col-sm-11 col-mg-11">
-		<h5 style="float:right"><bean:message key="welcome.message" arg0="${sessionScope.nom}"/></h5>
+		<h5 style="float:right"><bean:message key="welcome.message" arg0="${user}"/></h5>

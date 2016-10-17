@@ -19,8 +19,8 @@
 <jsp:include page="header.jsp" />
 	<%
 		GroupeService gs = new GroupeService();
-			MembreService ms = new MembreService();
-			ArrayList<Groupe> groupes = gs.getGroups();
+		MembreService ms = new MembreService();
+		ArrayList<Groupe> groupes = gs.getGroups();
 	%>	
 	<h3><bean:message key="search.group.title"/></h3> <br>
 	<form id="searchForm" class="form-inline col-sm-4 col-md-4" method="get" action="SearchGroup.do">

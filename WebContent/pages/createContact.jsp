@@ -1,6 +1,10 @@
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Models.Adresse"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -14,10 +18,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
 <jsp:include page="header.jsp"/>
-	<% 
-		AdresseService as = new AdresseService();
-		ArrayList<Adresse> adresses = as.getAdresses();
-	%>	
+
 		<div class="col-md- col-sm-4">
 			<h3><bean:message key="create.contact.title"/></h3> <br>
 			<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="Create.do">
@@ -28,11 +29,9 @@
 				
 				<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">
 					<option value="-1" selected><bean:message key="address.na"/></option>
-				<%
-					for(Adresse a : adresses)
-						out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
-				%>
-	
+					<c:forEach items="${allAdresses}" var="a">
+						<option value="${a.idAddress}">${a.rue}, ${a.codePostal}</option>
+					</c:forEach>
 				</select><br>
 				
 				<button id="newPhone" class="btn btn-info" type="button"><i class="material-icons">add</i><bean:message key="phone"/></button><br>

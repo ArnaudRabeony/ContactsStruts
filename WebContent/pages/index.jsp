@@ -9,9 +9,11 @@
 <%@page import="Models.Contact"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
-<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,10 +24,11 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
+
 <%
 	ContactService cs = new ContactService();
 	MembreService ms = new MembreService();
-	ArrayList<Contact> contacts = cs.getContacts();
+	AdresseService as = new AdresseService();
 
 	GroupeService gs = new GroupeService();
 	ArrayList<Groupe> groupes = gs.getGroups();
@@ -39,7 +42,6 @@
 			<div class="form-group form-group-sm label-floating is-empty">
 			  <input class="form-control" style="width:45%" id="searchContact" type="text" placeholder="<bean:message key="index.search.placeholder"/>">
 			</div>
-			 
 		<div class="groupPanel panel-group">
 	
 	<!-- 	foreach group g => g.getName() + getNbContactByGroup()	 -->
@@ -48,6 +50,7 @@
 		for(Groupe g : groupes)
 		{
 			ArrayList<Contact> members = ms.getMembersByGroupId(g.getId());
+			session.setAttribute("members", members);
 			%>
 	
 			    <div class="panel panel-default">
@@ -59,16 +62,10 @@
 			      </div>
 			      <div id="collapse<%=g.getId() %>" class="panel-collapse collapse">
 			        <ul class="list-group">
-<%-- 			        <c:forEach items="${members}" var="contact"> --%>
-<%-- 						<li class='list-group-item contactItem' data-contactid='${contact.id}'>${contact.nom} ${contact.Prenom} --%>
-<!-- 							<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li> -->
-<%-- 					</c:forEach> --%>
-			          <%
-							String line = "";
-							for(Contact c : members)
-								line+="<li class='list-group-item contactItem' data-contactid='"+c.getId()+"'>"+c.getNom()+" "+c.getPrenom()+"<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li>";
-							out.write(line);
-						%>
+			        <c:forEach items="${members}" var="contact">
+						<li class='list-group-item contactItem' data-contactid='${contact.id}'>${contact.nom} ${contact.prenom}
+							<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li>
+					</c:forEach>
 			        </ul>
 			      </div>
 			    </div>
@@ -77,7 +74,8 @@
 	 	ArrayList<Contact> noGroup = ms.getContactsWithoutGroup();
 	 	if(!noGroup.isEmpty())
 	 	{
-	 		
+			session.setAttribute("noGroup", noGroup);
+
 	 		%>
 		    <div class="panel panel-default">
 		      <div data-toggle="collapse" data-target="#noGroup" class="panel-heading" data-group="NoGroup">
@@ -88,12 +86,11 @@
 		      </div>
 		      <div id="noGroup" class="panel-collapse collapse">
 		        <ul class="list-group">
-		          <%
-						String line = "";
-						for(Contact c : noGroup)
-							line+="<li class='list-group-item contactItem' data-contactid='"+c.getId()+"'>"+c.getNom()+" "+c.getPrenom()+"<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li>";
-						out.write(line);
-					%>
+		          
+		        <c:forEach items="${noGroup}" var="contact">
+					<li class='list-group-item contactItem' data-contactid='${contact.id}'>${contact.nom} ${contact.prenom}
+							<span><img class='displayContact' src='images/Contacts-icon.png' width='30' height='35'></span></li>
+				</c:forEach>
 		        </ul>
 		      </div>
 		    </div>
@@ -153,8 +150,8 @@
 <!--     		    	<h3 style="display:none"><small>Adresse(s)</small></h3> -->
 	    	<div id="addressList" class="list-group">
 	    	<%
-	    		AdresseService as = new AdresseService();
 	    		int idAdresse = cs.getIdAdresseByContactId(Integer.valueOf(selectedId));
+
 	    		if(idAdresse!=0)
 	    		{
 		    		Adresse a = as.getAdresseById(idAdresse);
@@ -166,9 +163,11 @@
 			<div id="telephonesList" class="list-group">
 			<%
 	    		ArrayList<Telephone> telephones = ts.getTelephonesByContactId(c.getId());
-	    		for(Telephone t : telephones)
-	    			out.write("<li class='list-group-item'>"+t.getPhoneKind()+" : "+t.getNumber()+"</li>");
+				session.setAttribute("phones", telephones);
 	    	%>			
+			    <c:forEach items="${phones}" var="tel">
+			    	<li class='list-group-item'>${tel.phoneKind} : ${tel.number}</li>
+		    	</c:forEach>
 	    	</div>
     	</div>
     	<%

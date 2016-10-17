@@ -5,6 +5,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.jstl.core.Config;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -26,7 +27,10 @@ public class SwitchLanguage extends Action
 	     String newLang = f.getLang();
 	     response.setHeader("Content-Language", newLang);
 //	     session.setAttribute("lang", newLang);
-	     request.setAttribute("javax.servlet.jsp.jstl.fmt.fallbackLocale.request",newLang);
+	     
+	     Config.set( session, Config.FMT_LOCALE, new java.util.Locale(newLang));
+	     System.out.println(session.getAttribute("locale"));
+//	     request.setAttribute("javax.servlet.jsp.jstl.fmt.fallbackLocale.request",newLang);
 	     return	 mapping.findForward("success");
 	}
 }

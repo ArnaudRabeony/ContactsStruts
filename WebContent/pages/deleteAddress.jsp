@@ -3,6 +3,9 @@
 <%@page import="ServiceEntities.AdresseService"%>
 <%@page import="Models.Adresse"%>
 <%@page import="Models.Contact"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -17,21 +20,16 @@
 <body>
 <jsp:include page="header.jsp"/>
 	
-	<% 
-		AdresseService as = new AdresseService();
-		ArrayList<Adresse> adresses = as.getAdresses();
-	%>	
 	<h3><bean:message key="delete.address.title"/></h3> <br>
 	<form id="deleteForm" class="form-inline col-sm-4 col-md-4" method="post" action="DeleteAddress.do">
-			<div class="form-group form-group-sm">			
-			<label for="selectedId" ><bean:message key="address.select"/></label><br>
-			<%
-				for(Adresse a : adresses)
-					out.write("<input type='checkbox' name='idsToDelete' value='"+a.getIdAddress()+"'> "+a.getRue()+", "+a.getCodePostal()+"</option><br>");
-			%>
-			</div><br>
-			<html:errors/>
-			<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>
+		<div class="form-group form-group-sm">			
+		<label for="selectedId" ><bean:message key="address.select"/></label><br>
+			<c:forEach items="${allAdresses}" var="a">
+				<input type='checkbox' name='idsToDelete' value="${a.idAddress}"> ${a.rue}, ${a.codePostal}<br>
+			</c:forEach>
+		</div><br>
+		<html:errors/>
+		<button id="deleteBtn" class="btn btn-primary" type="submit" disabled><bean:message key="delete"/></button>
 	</form>
 <jsp:include page="footer.jsp"/>
 <script>
