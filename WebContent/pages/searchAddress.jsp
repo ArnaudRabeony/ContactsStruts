@@ -35,7 +35,6 @@
 <!-- 			<button class="btn btn-primary" type="submit">Chercher</button> -->
 	</form>
 	
-	
 	<div id="updateForm" class="row">
 	<%
 	if(request.getParameter("selectedId")!=null)

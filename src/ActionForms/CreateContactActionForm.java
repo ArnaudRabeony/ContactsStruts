@@ -7,7 +7,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import ServiceEntities.*;
+import ServiceEntities.ContactService;
 
 public class CreateContactActionForm extends ActionForm
 {

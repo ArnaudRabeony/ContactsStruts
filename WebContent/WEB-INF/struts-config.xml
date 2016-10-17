@@ -28,7 +28,7 @@
 	<action-mappings>
 		<action path="/index" forward="/pages/index.jsp"/>
 		<action path="/searchContact" forward="/pages/searchContact.jsp"/>
-		
+		<action path="/Welcome.do" forward="/pages/index.jsp"/>
 		<action path="/update" forward="/pages/update.jsp"/>
 		<action path="/searchContact" forward="/pages/searchContact.jsp"/>
 		<action path="/searchAddress" forward="/pages/searchAddress.jsp"/>

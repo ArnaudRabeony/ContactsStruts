@@ -7,6 +7,9 @@
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <header>
         <!--Navbar-->
         <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar mdb-gradient top-nav-collapse">
@@ -14,12 +17,12 @@
             	<span class="navbar-brand" style="color:azure;cursor:default;">Gestionnaire de contacts</span>
                     <!--Navbar icons-->
                     <ul class="nav navbar-nav nav-flex-icons">
-                        	<form id="langForm">
-                        		<select id="lang" name="lang">
-                        			<option value="fr" selected>FR</option>
-                        			<option value="en">EN</option>
-                        		</select>
-                        	</form>
+						<li class="nav-item">
+					 		<s:url var="url" action="Welcome.do">
+					            <s:param name="request_locale">en</s:param>
+					        </s:url>
+					        <s:a href="%{url}">English</s:a>
+                 		</li>
                         <li class="nav-item">
                         	<button id="logout" class="btn btn-sm btn-default"><a href="Logout.do"><bean:message key="logout"/></a></button>
                         </li>

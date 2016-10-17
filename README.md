@@ -4,6 +4,7 @@
 * Afficher erreurs formulaires
 
 ### PRB
+* i18n
 * Création contact : validation des champs optionnels (Telephone)
 
 ## DONE 

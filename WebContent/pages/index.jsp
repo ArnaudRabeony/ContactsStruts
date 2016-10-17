@@ -10,6 +10,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ServiceEntities.ContactService"%>
 
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -96,6 +98,7 @@
 		    </div>
 <%		}
 	 %>
+	 
 	<!-- 	 -->  
 			  </div>
 		</div>
