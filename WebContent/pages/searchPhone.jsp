@@ -53,7 +53,7 @@
 	<span id="responseType"><%= request.getAttribute("errorPhoneType")%></span>
 	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdatePhone.do" style="margin-left:100px;">
 		<input type="hidden" name="selectedId" value="<%=request.getParameter("selectedId")%>">
-		<input class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorPhone}" name="numeroTel" id="numeroTel" placeholder="N° téléphone...">
+		<input class="form-control inputPadding col-md-9 col-sm-9 bfh-phone" data-country="FR" type="text" value="${errorPhone}" name="numeroTel" id="numeroTel" placeholder="N° téléphone...">
 		<select class="form-control col-md-3 col-md-3" name="type" id="type">
 				<option value="pro">Professionnel</option>
 				<option value="perso">Personnel</option>

@@ -99,7 +99,8 @@
 			<input class="inputPadding form-control" type="text" name="prenom" id="prenom" value="${prenomResult}" placeholder="Nouveau prénom..."><br>
 			<input class="inputPadding form-control" type="text" name="email" id="email" value="${emailResult}" placeholder="Nouvelle adresse mail..."><br>
 		</div>
-		<html:errors/><br>		
+		<html:errors/><br>
+		<span class="errorSpan"></span>		
 		<button class="btn btn-primary" type="submit"><bean:message key="update"/></button>
 	</form>
 	</div>
@@ -139,7 +140,7 @@ $(function()
 	
 	$("#editableFormCard #email").keyup(function()
 	{
-		
+		$(".errorSpan").text("").hide();
 		if($("#nom").val()=="" && $("#prenom").val()=="")
 			$("#editableFormCard button").prop('disabled', true);
 		else
@@ -150,7 +151,10 @@ $(function()
 			},function(response)
 			{
 				if(response.trim()=="ko")
+				{
+					$(".errorSpan").text("Cette adresse mail est déjà utilisée").show();			
 					$("#editableFormCard button").prop('disabled', true);
+				}
 				else
 					$("#editableFormCard button").prop('disabled', false);
 			});

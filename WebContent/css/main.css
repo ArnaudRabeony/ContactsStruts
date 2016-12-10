@@ -143,3 +143,11 @@ img {
 {
 	display:none;
 }
+
+.errorSpan
+{
+	display:none;
+	color: red;
+	font-style:italic;
+	font-size:.8em;
+}

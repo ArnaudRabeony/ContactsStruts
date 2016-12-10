@@ -5,6 +5,7 @@
 * Filtre par ville
 
 ### PRB
+* Update contact : erreur si l'utilisateur retape l'adresse mail du contact
 * AjaxChecker syntaxe (mail + telephone)
 * i18n
 * Création contact : validation des champs optionnels (Telephone)

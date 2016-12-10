@@ -24,7 +24,7 @@
 			<form class="form-group form-group-sm col-sm-11 col-md-11" method="post" action="Create.do">
 				<input class="form-control inputPadding" type="text" name="nom" id="nom" value="${errorNom}" placeholder="<bean:message key="create.contact.placeholder.lastname"/>"><br>
 				<input class="form-control inputPadding" type="text" name="prenom" id="prenom" value="${errorPrenom}" placeholder="<bean:message key="create.contact.placeholder.firstname"/>"><br>
-				<input class="form-control inputPadding" type="text" name="email" id="email" value="${errorEmail}" placeholder="<bean:message key="create.contact.placeholder.email"/>"><br>
+				<input class="form-control inputPadding" type="email" name="email" id="email" value="${errorEmail}" placeholder="<bean:message key="create.contact.placeholder.email"/>"><br>
 				<label for="selectedId" ><bean:message key="address.select"/></label><br>
 				
 				<select class="form-control col-md-3 col-md-3" name="selectedId" id="selectedId">

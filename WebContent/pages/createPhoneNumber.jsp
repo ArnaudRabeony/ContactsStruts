@@ -25,7 +25,7 @@
 							<option value="${c.id}"> ${c.prenom} ${c.nom}<br>
 						</c:forEach>
 					</select><br>
-					<input class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorPhoneType}" name="numeroTel" id="numeroTel" placeholder="<bean:message key="create.phone.placeholder.num"/>">
+					<input class="form-control inputPadding col-md-9 col-sm-9 bfh-phone" data-country="FR" type="text" value="${errorPhoneType}" name="numeroTel" id="numeroTel" placeholder="<bean:message key="create.phone.placeholder.num"/>">
 					<select class="form-control col-md-3 col-md-3" value="${errorPhone}" name="type" id="type">
 						<option value="pro" selected><bean:message key="create.phone.placeholder.type.pro"/></option>
 						<option value="perso"><bean:message key="create.phone.placeholder.type.perso"/></option>
