@@ -1,7 +1,10 @@
 package Actions;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -11,6 +14,7 @@ import org.apache.struts.action.ActionMapping;
 import ActionForms.CreateAddressActionForm;
 import ActionForms.UpdateAddressActionForm;
 import Models.Adresse;
+import Models.Contact;
 import ServiceEntities.AdresseService;
 
 public class UpdateAddressAction extends Action
@@ -27,6 +31,8 @@ public class UpdateAddressAction extends Action
 		String codep = f.getCodep();
 		String pays = f.getPays();
 		
+		HttpSession session = request.getSession();
+
 		if(as.addressExists(idAddress))
 		{
 			Adresse a = as.getAdresseById(f.getIdAddress());
@@ -41,6 +47,9 @@ public class UpdateAddressAction extends Action
 			if(addressHasChanged && !as.addressExists(rue,ville,codep,pays))// || !addressHasChanged)
 			{
 				as.updateAdresse(idAddress,rue,ville,codep,pays);
+				ArrayList<Adresse> adresses = as.getAdresses();
+				session.setAttribute("allAdresses", adresses);
+				
 				return mapping.findForward("success");
 			}
 			else

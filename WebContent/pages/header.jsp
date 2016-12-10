@@ -8,8 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<%@ taglib prefix="s" uri="/struts-tags" %>
-
 <header>
         <!--Navbar-->
         <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar mdb-gradient top-nav-collapse">
@@ -39,5 +37,5 @@
 		<a href="delete.do" class="btn btn-warning btn-fab-mini"><i class="material-icons">clear</i></a>
 		<a href="update.do" class="btn btn-success btn-fab-mini"><i class="material-icons">mode_edit</i></a>
 	</div>
-	<div id="rightPanel" class="col-sm-11 col-mg-11">
+	<div id="rightPanel" class="col-sm-11 col-mg-11 col-sm-offset-1 col-md-offset-1">
 		<h5 style="float:right"><bean:message key="welcome.message" arg0="${user}"/></h5>

@@ -67,4 +67,23 @@ $(function()
 				else if(value>0)
 					$("#deleteBtn").attr("disabled",false);
 			});
+			
+			$("#groupName").keyup(function()
+			{
+				if($(this).val=="")
+					$("#updateForm button").prop('disabled', true);
+				else
+				{
+					$.get("Checker.do",{
+						check:"groupName",
+						val:$(this).val()
+					},function(response)
+					{
+						if(response.trim()=="ko")
+							$("#updateForm button").prop('disabled', true);
+						else
+							$("#updateForm button").prop('disabled', false);
+					});
+				}
+			});
 		});

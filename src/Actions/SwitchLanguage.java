@@ -23,7 +23,6 @@ public class SwitchLanguage extends Action
 		 
 		 HttpSession session = request.getSession();
 		 
-
 	     String newLang = f.getLang();
 	     response.setHeader("Content-Language", newLang);
 //	     session.setAttribute("lang", newLang);

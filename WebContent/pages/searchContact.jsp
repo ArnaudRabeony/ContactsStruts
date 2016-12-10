@@ -5,7 +5,6 @@
 <%@page import="ServiceEntities.ContactService"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -78,7 +77,7 @@
 	<div id="editableFormCard" class="row">
 	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateContact.do">
 		<label for="selectedId" ><bean:message key="associated.address"/></label><br>
-		<select class="form-control col-md-3 col-md-3" name="newAddress" id="newAddress">
+		<select class="form-control col-sm-3 col-md-3"" name="newAddress" id="newAddress">
 			<option value="-1"><bean:message key="address.placeholder"/></option>
 		<%
 			int idAddress = Integer.valueOf(request.getParameter("selectedId"));
@@ -94,10 +93,12 @@
 					out.write("<option value='"+a.getIdAddress()+"'>"+a.getRue()+", "+a.getCodePostal()+"</option>");
 		%>
 		</select><br>
-		<input class="inputPadding form-control" type="hidden" name="idContact" id="idContact" value="${idResult}" placeholder="ID..."><br>	
-		<input class="inputPadding form-control" type="text" name="nom" id="nom" value="${nomResult}" placeholder="Nouveau nom..."><br>
-		<input class="inputPadding form-control" type="text" name="prenom" id="prenom" value="${prenomResult}" placeholder="Nouveau prénom..."><br>
-		<input class="inputPadding form-control" type="text" name="email" id="email" value="${emailResult}" placeholder="Nouvelle adresse mail..."><br>
+		<div class="form-group col-sm-11 col-md-11">
+			<input class="inputPadding form-control" type="hidden" name="idContact" id="idContact" value="${idResult}" placeholder="ID..."><br>	
+			<input class="inputPadding form-control" type="text" name="nom" id="nom" value="${nomResult}" placeholder="Nouveau nom..."><br>
+			<input class="inputPadding form-control" type="text" name="prenom" id="prenom" value="${prenomResult}" placeholder="Nouveau prénom..."><br>
+			<input class="inputPadding form-control" type="text" name="email" id="email" value="${emailResult}" placeholder="Nouvelle adresse mail..."><br>
+		</div>
 		<html:errors/><br>		
 		<button class="btn btn-primary" type="submit"><bean:message key="update"/></button>
 	</form>
@@ -135,6 +136,26 @@ $(function()
 	{
 		$("#editableFormCard").show();
 	}
+	
+	$("#editableFormCard #email").keyup(function()
+	{
+		
+		if($("#nom").val()=="" && $("#prenom").val()=="")
+			$("#editableFormCard button").prop('disabled', true);
+		else
+		{
+			$.get("Checker.do",{
+				check:"email",
+				val:$("#email").val()
+			},function(response)
+			{
+				if(response.trim()=="ko")
+					$("#editableFormCard button").prop('disabled', true);
+				else
+					$("#editableFormCard button").prop('disabled', false);
+			});
+		}
+	});
 });
 </script>
 </html>

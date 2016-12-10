@@ -1,7 +1,10 @@
 package Actions;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -10,6 +13,7 @@ import org.apache.struts.action.ActionMapping;
 
 import ActionForms.UpdateContactActionForm;
 import ActionForms.UpdatePhoneActionForm;
+import Models.Adresse;
 import Models.Contact;
 import Models.Telephone;
 import ServiceEntities.ContactService;
@@ -27,7 +31,8 @@ public class UpdateContactAction extends Action
 		String email = f.getEmail();
 		int idContact = f.getIdContact();
 		int idAdresse = f.getNewAddress();
-		
+		HttpSession session = request.getSession();
+
 		ContactService cs = new ContactService();
 		if(cs.contactExists(idContact))
 		{
@@ -40,17 +45,16 @@ public class UpdateContactAction extends Action
 			System.out.println("adresse a changé : "+addressHasChanged);
 
 			if(addressHasChanged && !contactHasChanged || (contactHasChanged && !cs.contactExists(nom, prenom)))
-			{
 				cs.updateContact(idContact, nom, prenom, email,idAdresse);
-				return mapping.findForward("success");
-			}
-			else if(contactHasChanged && !cs.contactExists(nom, prenom))// || !addressHasChanged)
-			{
-				cs.updateContact(idContact, nom, prenom, email);
-				return mapping.findForward("success");
-			}
+//			else if(!cs.contactExists(nom, prenom))
+//				return mapping.findForward("alreadyExists");
 			else
-				return mapping.findForward("error");
+				cs.updateContact(idContact, nom, prenom, email);
+			
+			ArrayList<Contact> contacts = cs.getContacts();
+			session.setAttribute("allContacts", contacts);
+			
+			return mapping.findForward("success");
 		}
 		else
 			return mapping.findForward("error");

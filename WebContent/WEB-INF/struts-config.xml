@@ -24,6 +24,8 @@
 		<form-bean name="UpdateGroupActionForm" type="ActionForms.UpdateGroupActionForm"/>
 		<form-bean name="UpdateContactActionForm" type="ActionForms.UpdateContactActionForm"/>
 		
+		<form-bean name="AjaxChecker" type="Ajax.AjaxChecker"/>
+		
 	</form-beans>
 	<action-mappings>
 		<action path="/index" forward="/pages/index.jsp"/>
@@ -50,6 +52,11 @@
 		<action path="/Switch" type="Actions.SwitchLanguage"
 			name="SwitchLanguageActionForm" scope="request" input="/pages/login.jsp">
 			<forward name="success" path="/pages/index.jsp" />
+		</action>
+		
+		<action path="/Checker" type="Ajax.AjaxCheckerAction"
+			name="AjaxChecker" scope="request" input="/pages/searchGroup.jsp">
+			<forward name="success" path="/pages/create.jsp" />
 		</action>
 		
 		<action path="/Login" type="Actions.LoginAction"
@@ -133,6 +140,7 @@
 		</action>
 		<action path="/UpdateContact" type="Actions.UpdateContactAction"
 			name="UpdateContactActionForm" scope="request" input="/pages/searchContact.jsp">
+			<forward name="alreadyExists" path="/pages/searchContact.jsp" />
 			<forward name="success" path="/pages/update.jsp" />
 			<forward name="error" path="/pages/error.jsp" />
 		</action>

@@ -1,9 +1,11 @@
 # ContactsStruts
 
 ## TODO
-* Afficher erreurs formulaires
+* Ajouter raccourcis update/suppr : Adresse/Tel
+* Filtre par ville
 
 ### PRB
+* AjaxChecker syntaxe (mail + telephone)
 * i18n
 * Création contact : validation des champs optionnels (Telephone)
 
@@ -19,6 +21,8 @@
 * Suppression via checkboxes
 * jstl
 * Session
+* Afficher erreurs formulaires
+* AjaxChecker
 
 
 

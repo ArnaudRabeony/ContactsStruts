@@ -68,6 +68,8 @@ public class CreateContactActionForm extends ActionForm
 	{
 		ActionErrors errors = new ActionErrors();
 		
+		//Probleme : Gestion formulaire telephone aléatoire
+		
 		boolean nomIsNullOrEmpty = this.getNom() == null || this.getNom().isEmpty();
 		boolean prenomIsNullOrEmpty = this.getPrenom() == null || this.getPrenom().isEmpty();
 		boolean emailIsNullOrEmpty = this.getEmail() == null || this.getEmail().isEmpty();

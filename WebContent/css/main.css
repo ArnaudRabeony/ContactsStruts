@@ -27,6 +27,7 @@ body
 	padding:0px 32px 40px 32px;
 	background-color:aliceblue;
 	height:100%;
+	position:fixed;
 }
 
 .groupPanel .panel-heading,.contactItem img
@@ -121,6 +122,12 @@ img {
 	display:none;
 }
 
+#editableFormCard form
+{
+	padding:20px;
+	box-shadow: 6px 6px 23px -5px;
+}
+
 #adressePhone
 {
 	margin-top:15%;
@@ -129,5 +136,10 @@ img {
 #membersSelection
 {
 	margin-left:15%;
+	display:none;
+}
+
+.contactItem
+{
 	display:none;
 }

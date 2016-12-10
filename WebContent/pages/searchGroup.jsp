@@ -45,7 +45,7 @@
 	%>
 	<form class="form-group form-group-sm col-sm-3 col-md-3" method="post" action="UpdateGroup.do">
 		<input type="hidden" name="selectedId" value="<%=request.getParameter("selectedId")%>">
-		<input class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorNomGroupe}" name="nomGroupe" id="nomGroupe" placeholder="Nom...">
+		<input id="groupName" class="form-control inputPadding col-md-9 col-sm-9" type="text" value="${errorNomGroupe}" name="nomGroupe" id="nomGroupe" placeholder="Nom...">
 		
 		<%
 				ContactService cs = new ContactService();

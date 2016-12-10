@@ -56,10 +56,13 @@ public class UpdateGroupAction extends Action
 		if(nameHasChanged && !gs.groupExists(nom))// || !addressHasChanged)
 			gs.updateGroupe(idGroupe, nom);
 		
+		ContactService cs = new ContactService();
 		if(membersIdList!=null)
 		{
-			ContactService cs = new ContactService();
-
+			for(Contact c : cs.getContacts())
+				if(ms.getGroupIdByContactId(c.getId()).contains(idGroupe))
+					ms.removeContactFromGroup(c.getId(), idGroupe);
+			
 			for(String newContactId : membersIdList)
 			{
 				Contact c = cs.getContactById(Integer.valueOf(newContactId));
@@ -68,8 +71,6 @@ public class UpdateGroupAction extends Action
 		}
 		else
 		{
-			ContactService cs = new ContactService();
-			
 			for(Contact c : cs.getContacts())
 				if(ms.getGroupIdByContactId(c.getId()).contains(idGroupe))
 					ms.removeContactFromGroup(c.getId(), idGroupe);
